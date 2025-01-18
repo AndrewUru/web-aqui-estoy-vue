@@ -9,7 +9,10 @@
       <section class="project-info">
         <h2>¿Qué es ¡Aquí estoy!?</h2>
         <p>
-          ¡Aquí estoy! es una aplicación creada con el objetivo de ayudar a reunir a los animales perdidos con sus dueños. Permite a los usuarios crear anuncios para buscar a sus mascotas perdidas, unirse a la búsqueda de otros animales y ofrecer ayuda en horarios específicos. Este proyecto nace para hacer de la comunidad una red de apoyo, ayudando a todos los animales a regresar a su hogar lo más rápido posible.
+          ¡Aquí estoy! es una aplicación creada con el objetivo de ayudar a reunir a los animales perdidos con sus
+          dueños. Permite a los usuarios crear anuncios para buscar a sus mascotas perdidas, unirse a la búsqueda de
+          otros animales y ofrecer ayuda en horarios específicos. Este proyecto nace para hacer de la comunidad una red
+          de apoyo, ayudando a todos los animales a regresar a su hogar lo más rápido posible.
         </p>
         <div class="features">
           <h3>Características:</h3>
@@ -24,10 +27,14 @@
       <section class="team">
         <h2>¿Quiénes Somos?</h2>
         <p>
-          Somos un grupo de apasionados por la tecnología y el bienestar animal. A lo largo de este proyecto, hemos aprendido cómo desarrollar una aplicación que no solo resuelve un problema real, sino que también fomenta el trabajo en equipo, la colaboración y la ayuda mutua entre los miembros de la comunidad.
+          Somos un grupo de apasionados por la tecnología y el bienestar animal. A lo largo de este proyecto, hemos
+          aprendido cómo desarrollar una aplicación que no solo resuelve un problema real, sino que también fomenta el
+          trabajo en equipo, la colaboración y la ayuda mutua entre los miembros de la comunidad.
         </p>
         <p>
-          Como estudiantes de Front-End, este proyecto nos ha permitido poner en práctica todo lo aprendido: desde el diseño de interfaces intuitivas hasta la implementación de funcionalidades complejas y el desarrollo de una experiencia de usuario fluida.
+          Como estudiantes de Front-End, este proyecto nos ha permitido poner en práctica todo lo aprendido: desde el
+          diseño de interfaces intuitivas hasta la implementación de funcionalidades complejas y el desarrollo de una
+          experiencia de usuario fluida.
         </p>
       </section>
 
@@ -144,4 +151,3 @@ export default {
   color: var(--color-celeste);
 }
 </style>
-

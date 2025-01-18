@@ -31,13 +31,14 @@
       </label>
       <label for="description">Descripción:
         <input type="text" name="description" id="description" v-model="formData.description">
-        <p class="text-form"><strong> Pequeña descripción sobre su compañera/o (datos que puedan distinguirle)</strong></p>
+        <p class="text-form"><strong> Pequeña descripción sobre su compañera/o (datos que puedan distinguirle)</strong>
+        </p>
       </label>
       <label for="file">Foto:
         <input class="select-file" id="button-file" type="file" name="file" @change="onFileChange">
         <p class="text-form"><strong>Asegúrese de que se le distinga
-          lo mejor posible, una buena foto da más
-          oportunidades de encontrarle</strong></p>
+            lo mejor posible, una buena foto da más
+            oportunidades de encontrarle</strong></p>
       </label>
       <button id="form-submit">Finalizar</button>
     </form>
@@ -74,9 +75,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 :root {
   background-color: var(--color-azul-medio);
+
 }
 
 .form-container {
@@ -116,6 +118,7 @@ export default {
         font-size: 1rem;
         padding: 4px 10px;
         color: var(--color-azul-oscuro);
+
         &::placeholder {
           color: var(--color-azul-oscuro);
         }

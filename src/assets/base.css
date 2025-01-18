@@ -10,14 +10,15 @@
     --header-height: 50px;
 }
 
-html {
+html, body {
     margin: 0;
     padding: 0;
-    height: auto; 
+    height: 100%; 
+    overflow-x: hidden;
+}
+* {
+    box-sizing: border-box; 
+    width: 100%; 
+
 }
 
-body {
-    margin: 0;
-    height: 100%;
-    overflow: auto; 
-}

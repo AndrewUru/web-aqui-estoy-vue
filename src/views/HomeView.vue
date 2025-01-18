@@ -1,10 +1,10 @@
 <template>
-	<div>
-		<MainHero />
-		<InstructionsHero />
-		<TestimonialsHero />
-		<FooterHero />
-	</div>
+  <div>
+    <MainHero />
+    <InstructionsHero />
+    <TestimonialsHero />
+    <FooterHero />
+  </div>
 </template>
 
 <script>
@@ -15,16 +15,17 @@ import FooterHero from "../components/FooterComponent.vue";
 
 export default {
   name: 'IndexView',
-	components: {
-		MainHero,
-		TestimonialsHero,
-		InstructionsHero,
-		FooterHero,
-	},
+  components: {
+    MainHero,
+    TestimonialsHero,
+    InstructionsHero,
+    FooterHero,
+  },
 };
 </script>
 
 <style>
-	body{margin:0;}
+body {
+  margin: 0;
+}
 </style>
-

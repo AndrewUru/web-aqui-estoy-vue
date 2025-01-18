@@ -3,7 +3,7 @@
     <div class="footer-container">
       <div class="footer-col">
         <a href="#" class="footer-logo">
-          <img src="@/assets/logo.svg" alt="¡Aquí Estoy!" />
+          <img src="@/assets/logo.png" alt="¡Aquí Estoy!" />
           ¡Aquí Estoy!
         </a>
         <p class="footer-description">
@@ -58,101 +58,116 @@
   </footer>
 </template>
 
-<style scoped>
-  :root {
-    --color-azul-oscuro: #041f2a;
-    --color-blanco: #ffffff;
-    --color-accion: #f0c40f;
-    --font-family-base: "Montserrat", sans-serif;
-  }
+<style>
+:root {
+  --color-azul-oscuro: #041f2a;
+  --color-blanco: #ffffff;
+  --color-accion: #f0c40f;
+  /* color de acento */
+  --font-family-base: "Montserrat", sans-serif;
+}
 
-  .site-footer {
-    background-color: var(--color-azul-oscuro);
-    color: var(--color-blanco);
-    padding: 2rem;
-  }
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+}
 
-  .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-between;
-  }
+/***************************************************
+       * Footer
+       ***************************************************/
+.site-footer {
+  background-color: var(--color-azul-oscuro);
+  color: var(--color-blanco);
+  padding: 2rem;
+}
 
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  /* Para adaptarse a pantallas pequeñas */
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+/* Bloques de contenido del footer */
+.footer-col {
+  min-width: 200px;
+  flex: 1;
+}
+
+/* Logo y texto breve */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color: var(--color-blanco);
+}
+
+.footer-logo img {
+  height: 10px;
+  width: 10px;
+  margin-right: 0.5rem;
+}
+
+.footer-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Lista de enlaces */
+.footer-links {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--color-blanco);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Redes sociales */
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  color: var(--color-blanco);
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  color: var(--color-accion);
+}
+
+/* Separador inferior o texto final */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
   .footer-col {
-    min-width: 200px;
-    flex: 1;
+    flex: 1 1 100%;
   }
-
-  .footer-logo {
-    display: flex;
-    align-items: center;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    text-decoration: none;
-    color: var(--color-blanco);
-  }
-
-  .footer-logo img {
-    height: 40px;
-    margin-right: 0.5rem;
-  }
-
-  .footer-description {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-  }
-
-  .footer-links {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-  }
-
-  .footer-links li {
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-links a {
-    color: var(--color-blanco);
-    text-decoration: none;
-    font-size: 1rem;
-  }
-
-  .footer-links a:hover {
-    text-decoration: underline;
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .footer-social a {
-    color: var(--color-blanco);
-    font-size: 1.3rem;
-    text-decoration: none;
-  }
-
-  .footer-social a:hover {
-    color: var(--color-accion);
-  }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 1rem;
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 768px) {
-    .footer-col {
-      flex: 1 1 100%;
-    }
-  }
+}
 </style>
-

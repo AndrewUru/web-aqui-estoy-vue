@@ -25,53 +25,53 @@
 </template>
 
 <style scoped>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--color-celeste);
-  }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--color-celeste);
+}
 
-  main {
-    max-width: 800px;
-    margin: 20px auto;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 20px;
-  }
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 10px;
 
-  .pet-info {
-    display: flex;
-    padding: 20px;
-    gap: 20px;
-    background-color: var(--color-azul-oscuro);
-    border-radius: 10px;
-  }
+  padding: 20px;
+}
 
-  .pet-info img {
-    width: 350px;
-    height: 350px;
-    border-radius: 10px;
-    object-fit: cover;
-  }
+.pet-info {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  background-color: var(--color-azul-oscuro);
+  border-radius: 10px;
+}
 
-  .pet-details {
-    flex: 1;
-    color: white;
-  }
+.pet-info img {
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+}
 
-  .pet-details h2 {
-    margin: 0;
-  }
+.pet-details {
+  flex: 1;
+  color: white;
+}
 
-  .pet-details p {
-    margin: 5px 0;
-  }
+.pet-details h2 {
+  margin: 0;
+}
 
-  .pet-details .contact {
-    margin: 10px 0;
-    font-weight: bold;
-  }
+.pet-details p {
+  margin: 5px 0;
+}
+
+.pet-details .contact {
+  margin: 10px 0;
+  font-weight: bold;
+}
 </style>
 
 <script>
@@ -90,4 +90,3 @@ export default {
   }
 }
 </script>
-

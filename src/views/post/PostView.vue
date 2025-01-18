@@ -17,7 +17,7 @@ export default {
   name: 'PostViewPage',
   props: ['id'],  // Recibe el parámetro id
   mounted() {
-    console.log(this.id); 
+    console.log(this.id);
   },
   data() {
     return {

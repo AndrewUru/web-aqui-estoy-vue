@@ -1,44 +1,36 @@
 <script>
-import comments from "@/data/post.json";
+import comments from '@/data/post.json'
 
 export default {
-  data () {
+  data() {
     return {
-      comments : comments,
+      comments: comments,
     }
   },
-  methods : {
-    generateColorFromName : function (name)  {
-      const hash = Array.from(name).reduce(
-    (acc, char) => acc + char.charCodeAt(0),
-    0
-    );
-      const hue = hash % 360;
-      const saturation = 70 + Math.random() * 10;
-      const lightness = 85 + Math.random() * 10;
-      return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  methods: {
+    generateColorFromName: function (name) {
+      const hash = Array.from(name).reduce((acc, char) => acc + char.charCodeAt(0), 0)
+      const hue = hash % 360
+      const saturation = 70 + Math.random() * 10
+      const lightness = 85 + Math.random() * 10
+      return `hsl(${hue}, ${saturation}%, ${lightness}%)`
+    },
+  },
 }
-    }
-  }
-
 </script>
 
 <template>
   <div class="comment-section">
-    {comments && comments.length > 0 ? (
-      comments.map((comment: { name: string; text: string }) => {
-        const backgroundColor = generateColorFromName(comment.name);
-        return (
-          <div class="comment" :style="{ backgroundColor: backgroundColor }">
-            <p class="comment-name">{comment.name}:</p>
-            <p>{comment.text}</p>
-          </div>
-        );
-      })
-    ) : (
-      <p>No hay comentarios aún.</p>
+    {comments && comments.length > 0 ? ( comments.map((comment: { name: string; text: string }) => {
+    const backgroundColor = generateColorFromName(comment.name); return (
+    <div class="comment" :style="{ backgroundColor: backgroundColor }">
+      <p class="comment-name">{comment.name}:</p>
+      <p>{comment.text}</p>
+    </div>
+    ); }) ) : (
+    <p>No hay comentarios aún.</p>
     )}
-  
+
     <div class="add-comment">
       <input type="text" placeholder="Escribe aquí tu nombre..." />
       <textarea rows="3" placeholder="Escribe aquí tu comentario..."></textarea>
@@ -47,54 +39,53 @@ export default {
   </div>
 </template>
 
+<style>
+.comments-section {
+  background-color: #f7fbff;
+  padding: 20px;
+}
 
-  <style>
-    .comments-section {
-      background-color: #f7fbff;
-      padding: 20px;
-    }
+.comments-section h3 {
+  margin: 0 0 10px;
+}
 
-    .comments-section h3 {
-      margin: 0 0 10px;
-    }
+.comment {
+  background: #eaf4ff;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
 
-    .comment {
-      background: #eaf4ff;
-      margin-bottom: 10px;
-      padding: 10px;
-      border-radius: 5px;
-    }
+.comment-name {
+  font-weight: bold;
+}
 
-    .comment-name {
-      font-weight: bold;
-    }
+.add-comment {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-    .add-comment {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+.add-comment input,
+.add-comment textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 10px;
+}
 
-    .add-comment input,
-    .add-comment textarea {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
-        padding: 10px;
-    }
+.add-comment button {
+  align-self: flex-end;
+  padding: 10px 20px;
+  background-color: #002c5f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-    .add-comment button {
-      align-self: flex-end;
-      padding: 10px 20px;
-      background-color: #002c5f;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .add-comment button:hover {
-      background-color: #004a99;
-    }
-  </style>
+.add-comment button:hover {
+  background-color: #004a99;
+}
+</style>

@@ -31,7 +31,7 @@ export default {
   flex-direction: column;
   height: 290px;
   width: 340px;
-  overflow: hidden;
+
   border-radius: 50px;
   background-color: var(--color-azul-medio);
   justify-content: space-around;
@@ -50,7 +50,6 @@ export default {
   font-size: 18px;
   padding: 10px;
   padding-top: 0;
-  margin-top : 0;
+  margin-top: 0;
 }
-
 </style>

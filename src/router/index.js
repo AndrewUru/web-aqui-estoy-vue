@@ -4,8 +4,7 @@ import LostAnimalsView from '../views/LostAnimalsView.vue';
 import FoundAnimalsView from '../views/FoundAnimalsView.vue';
 import AboutUsView from '../views/AboutUsView.vue';
 import FormLostAnimalView from '../views/FormLostAnimalView.vue';
-import LoginView from '../views/LoginView.vue';
-import RegisterView from '../views/RegisterView.vue';
+import AuthView from '../views/AuthView.vue';
 import PostView from '../views/post/PostView.vue';
 import NotFoundView from '../views/404View.vue';
 const router = createRouter({
@@ -39,21 +38,21 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: LoginView,
+      component: AuthView
     },
     {
       path: '/register',
       name: 'register',
-      component: RegisterView,
+      component: AuthView
     },
     {
-      path: '/post/:id', 
+      path: '/post/:id',
       name: 'post-view',
       component: PostView,
-      props: true 
+      props: true
     },
     {
-      path: '/404', 
+      path: '/404',
       name: '404-view',
       component: NotFoundView,
     },

@@ -34,3 +34,81 @@ export default {
   }
 };
 </script>
+<style>
+.landing-page-1 {
+  margin: auto;
+  background-color: var(--color-celeste);
+  display: flex;
+  font-family: Montserrat, sans-serif;
+  z-index: -2;
+
+  & img {
+    max-width: var(--size-imag);
+    max-height: var(--size-imag);
+    margin-top: 20px;
+    z-index: 1;
+  }
+
+  & .container-rigth-side {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    z-index: 0;
+
+    & h1 {
+      font-family: "Luckiest Guy", system-ui;
+      font-size: 100px;
+      color: var(--color-azul-oscuro);
+      text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.321);
+      margin-top: 20px;
+      text-wrap: pretty;
+    }
+
+    & .elements-container {
+      display: flex;
+      flex-direction: column;
+      margin-left: 50%;
+      margin-bottom: 5px;
+      align-items: center;
+    }
+
+    & h2,
+    h3 {
+      font-size: 22px;
+      color: var(--color-azul-oscuro);
+      width: 600px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    & h3 {
+      margin-top: 15px;
+    }
+
+    & .text-inside-absolute {
+      margin-top: 25px;
+    }
+
+    & button {
+      background-color: var(--color-azul-oscuro);
+      border-radius: 15px;
+      color: var(--color-celeste);
+      padding: 5px 20px;
+      font-size: 30px;
+      margin-top: 15px;
+    }
+
+    & #container-light-blue {
+      /*Se mueve mucho el contenedor al minimizar y etc*/
+      position: absolute;
+      /*top: 75%; left: 2.5%; right : 2.5%;*/
+      top: 500px;
+      left: 40px;
+      background-color: white;
+      width: 95%;
+      height: 250px;
+      z-index: -1;
+    }
+  }
+}
+</style>

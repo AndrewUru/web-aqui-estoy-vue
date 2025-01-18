@@ -26,74 +26,76 @@
   </div>
 </template>
 
-<style>
-
+<style scoped>
 .title {
-  display : flex;
+  display: flex;
   justify-content: center;
+
   & h2 {
-    margin : 45px 0 0px 0;
+    margin: 45px 0 0px 0;
     font-family: "Luckiest Guy", cursive;
     font-size: 60px;
     font-style: normal;
     color: var(--color-azul-oscuro);
   }
-  
+
 }
 
-  .using-benefits-section {
-    position : relative;
-    & .back-line {
+.using-benefits-section {
+  position: relative;
+
+  & .back-line {
     width: 100%;
     height: 12rem;
     background-color: var(--color-azul-oscuro);
-    position : absolute;
+    position: absolute;
     z-index: -1;
-    top : 90px;
+    top: 90px;
   }
-  }
-  
-  .card-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding: 40px 0 30px 0;
-  }
+}
 
-  .call-to-action {
-    border-radius: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-  }
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 40px 0 30px 0;
+}
 
-  .call-to-action-text {
-    display: flex;
-    justify-content: center;
-    background-color: var(--color-azul-medio);
-    border-radius: 50px;
-    width: 800px;
-    margin-bottom: 50px;
-  }
+.call-to-action {
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+}
 
-  .call-to-action-text h2 {
-    font-family: "Luckiest Guy", cursive;
-    font-size: 40px;
-    color: var(--color-celeste);
-    letter-spacing: 3px;
+.call-to-action-text {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-azul-medio);
+  border-radius: 50px;
+  width: 800px;
+  margin-bottom: 50px;
+}
+
+.call-to-action-text h2 {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 40px;
+  color: var(--color-celeste);
+  letter-spacing: 3px;
+}
+
+.explanation {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+
+  & p {
+    margin-top: 20px;
   }
-  .explanation {
-    display: flex;
-    justify-content: center;
-    font-size: 32px;
-    & p {
-      margin-top: 20px;
-    }
-  }
+}
 </style>
-
 <script>
 import InstructionCard from "./elements/InstructionCardElement.vue";
 import instructions from "../data/instructions.json";
@@ -104,9 +106,8 @@ export default {
   },
   data() {
     return {
-      instructions,
+      instructions: instructions,
     };
   },
 };
 </script>
-

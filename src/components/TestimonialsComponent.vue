@@ -4,7 +4,8 @@
       <h2>Creíamos que el sofá nunca volvería a tener pelos...</h2>
     </div>
     <div class="testimonials">
-      <TestimonyCard v-for="testimony in testimonials" :key="testimony.testimonyHead.nameAgePet" :testimony="testimony" />
+      <TestimonyCard v-for="testimony in testimonials" :key="testimony.testimonyHead.nameAgePet"
+        :testimony="testimony" />
     </div>
     <div class="text-end">
       <h2>...pero ¡aquí estoy! nos regaló un final feliz</h2>
@@ -29,29 +30,34 @@ export default {
 </script>
 
 <style>
+/* Contenedor principal para las tarjetas de testimonio */
 .landing-page-3 {
   display: flex;
   flex-direction: column;
   background: var(--color-azul-claro);
   align-items: center;
-  padding: 20px 100px;
+  padding: 20px 100px 20px 100px;
 }
 
-.title {
+/* Título de la sección */
+.tittle {
   font-size: 30px;
   font-style: italic;
+  display: 1;
   width: 100%;
   justify-content: flex-start;
   margin: 20px;
   color: var(--color-celeste);
 }
 
+/* Contenedor de testimonios */
 .testimonials {
   width: 100%;
-  display: flex;
+  height: auto;
   flex-flow: row wrap;
   justify-content: space-between;
   gap: 20px;
+  display: flex;
 }
 
 .text-end {
@@ -62,4 +68,3 @@ export default {
   color: var(--color-celeste);
 }
 </style>
-

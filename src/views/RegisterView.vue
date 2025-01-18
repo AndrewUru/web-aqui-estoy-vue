@@ -23,7 +23,7 @@
         <label class="form-label password-label">
           Contraseña
           <button type="button" class="password-toggle">
-            <img src="/icons/eye-tracking.svg" alt="Clock Icon" />
+            <img src="/icons/eye-tracking.svg" alt="Eye-tracking Icon" />
           </button>
         </label>
         <input type="password" required class="input-field" />
@@ -44,169 +44,170 @@ export default {
 </script>
 
 <style scoped>
-  
-  .split-screen {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-  }
+.split-screen {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
 
-  .left-side,
-  .right-side {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
+.left-side,
+.right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
-  .left-side {
-    background-color: var(--color-celeste);
-    color: var(--color-azul-oscuro);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-  }
+.left-side {
+  background-color: var(--color-celeste);
+  color: var(--color-azul-oscuro);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
 
-  .left-side h1 {
-    font-size: 2.5rem;
-    margin-top: 80px;
-    margin-bottom: 10px;
-    font-family: "Luckiest Guy", system-ui;
-    letter-spacing: 2px;
-  }
+.left-side h1 {
+  font-size: 2.5rem;
+  margin-top: 80px;
+  margin-bottom: 10px;
+  font-family: "Luckiest Guy", system-ui;
+  letter-spacing: 2px;
+}
 
-  .left-side h2 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 20px;
-    font-family: Montserrat, sans-serif;
-  }
+.left-side h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  font-family: Montserrat, sans-serif;
+}
 
-  .right-side {
-    background-color: var(--color-azul-claro);
-  }
+.right-side {
+  background-color: var(--color-azul-claro);
+}
 
-  .svg-icon {
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
-  }
+.svg-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
 
-  .pet-svg-icon {
-    width: 500px;
-    height: auto;
-  }
+.pet-svg-icon {
+  width: 500px;
+  height: auto;
+}
 
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 
-  .login-form h2 {
-    font-family: "Luckiest Guy", system-ui;
-    color: white;
-    letter-spacing: 2px;
-    font-size: 2rem;
-  }
+.login-form h2 {
+  font-family: "Luckiest Guy", system-ui;
+  color: white;
+  letter-spacing: 2px;
+  font-size: 2rem;
+}
 
-  .google-login{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: white;
-    color: black  ;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    margin: 10px;
-  }
-  .login-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: var(--color-azul-oscuro);
-    color: var(--color-celeste);
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-  }
+.google-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin: 10px;
+}
 
-  .or-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: var(--color-azul-oscuro);
+  color: var(--color-celeste);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
 
-  .separator-line {
-    height: 1px;
-    width: 100px;
-    background-color: #ccc;
-  }
+.or-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-  .or-separator {
-    margin: 0 10px;
-    font-size: 20px;
-    color: var(--color-azul-oscuro);
-    line-height: 1;
-    white-space: nowrap;
-  }
+.separator-line {
+  height: 1px;
+  width: 100px;
+  background-color: #ccc;
+}
 
-  .form-label {
-    color: white;
-    font-size: 20px;
-    width: 100%;
-  }
+.or-separator {
+  margin: 0 10px;
+  font-size: 20px;
+  color: var(--color-azul-oscuro);
+  line-height: 1;
+  white-space: nowrap;
+}
 
-  .password-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
+.form-label {
+  color: white;
+  font-size: 20px;
+  width: 100%;
+}
 
-  .password-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
+.password-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 
-  .input-field {
-    background: transparent;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 10px 10px;
-    width: 500px;
+.password-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
-  }
+.input-field {
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 10px;
+  width: 500px;
 
-  .form-links {
+}
+
+.form-links {
   margin-top: 10px;
   font-size: 14px;
   color: var(--color-azul-oscuro);
-  width: 100%; 
+  width: 100%;
   display: flex;
-  &.password{
+
+  &.password {
     justify-content: flex-end;
-  } 
-  &.signin{
+  }
+
+  &.signin {
     justify-content: flex-start;
   }
-  & a{
+
+  & a {
     color: var(--color-azul-oscuro);
     text-decoration: none;
     margin: 5px;
     font-size: 15px;
   }
 }
-
 </style>
-

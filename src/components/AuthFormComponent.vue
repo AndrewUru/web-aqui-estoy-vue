@@ -1,67 +1,69 @@
 <template>
-  <div>
-
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Iniciar sesión - ¡Aquí Estoy!</title>
-    </head>
-
-    <body>
-      <div class="split-screen">
-        <div class="left-side">
-          <h1>Tu comunidad, su camino a casa.</h1>
-          <h2>
-            Conecta, busca, y encuentra a tu mascota perdida mientras construimos
-            una comunidad solidaria.
-          </h2>
-        </div>
-        <div class="right-side">
-          <form class="login-form">
-            <h2>BIENVENIDO</h2>
-            <button class="google-login">
-              <img src="/icons/google.svg" alt="Google Icon" /> Continuar con Google
-            </button>
-            <div class="or-container">
-              <div class="separator-line"></div>
-              <div class="or-separator">o</div>
-              <div class="separator-line"></div>
-            </div>
-            <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
-            <input type="email" required class="input-field" />
-            <label class="form-label password-label">
-              Contraseña
-              <button type="button" class="password-toggle">
-                <img src="/icons/eye-tracking.svg" alt="Eye tracking Icon" />
-              </button>
-            </label>
-            <input type="password" required class="input-field" />
-            <div class="form-links password">
-              <a href="#">¿Olvidaste tu contraseña?</a>
-            </div>
-            <button type="submit" class="login-button">Acceder</button>
-            <div class="form-links signin">
-              <a href="register">¿Aún no tienes cuenta? Regístrate</a>
-            </div>
-          </form>
-        </div>
+  <div class="auth-form">
+    <form class="login-form" v-if="isLogin">
+      <h2>BIENVENIDO</h2>
+      <button class="google-login">
+        <img src="/icons/google.svg" alt="Google Icon" /> Continuar con Google
+      </button>
+      <div class="or-container">
+        <div class="separator-line"></div>
+        <div class="or-separator">o</div>
+        <div class="separator-line"></div>
       </div>
-    </body>
+      <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
+      <input type="email" required class="input-field" />
+      <label class="form-label password-label">
+        Contraseña
+        <button type="button" class="password-toggle">
+          <img src="/icons/eye-tracking.svg" alt="Eye tracking Icon" />
+        </button>
+      </label>
+      <input type="password" required class="input-field" />
+      <div class="form-links password">
+        <a href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+      <button type="submit" class="login-button">Acceder</button>
+      <div class="form-links signin">
+        <a href="register">¿Aún no tienes cuenta? Regístrate</a>
+      </div>
+    </form>
+
+    <form class="login-form" v-else>
+      <h2>Únete a nuestra comunidad</h2>
+      <button class="google-login">
+        <img src="/icons/google.svg" alt="Google Icon" /> Continuar con Google
+      </button>
+      <div class="or-container">
+        <div class="separator-line"></div>
+        <div class="or-separator">o</div>
+        <div class="separator-line"></div>
+      </div>
+      <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
+      <input type="email" required class="input-field" />
+      <label class="form-label password-label">
+        Contraseña
+        <button type="button" class="password-toggle">
+          <img src="/icons/eye-tracking.svg" alt="Eye-tracking Icon" />
+        </button>
+      </label>
+      <input type="password" required class="input-field" />
+      <button type="submit" class="login-button">Registrarme</button>
+    </form>
   </div>
 </template>
 
 <script>
-import "../assets/base.css";
-
-
-
 export default {
-  name: 'LoginView',
-  components: {
+  props: {
+    isLogin: {
+      type: Boolean,
+      required: true
+    }
   }
 }
 </script>
-<style>
+
+<style scoped>
 body {
   margin: 0;
 
