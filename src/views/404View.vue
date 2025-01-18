@@ -5,7 +5,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>404 - ¡Aquí Estoy!</title>
     </head>
-    <MainHeader />
     <div class="svg-container">
       <svg
         class="animated"
@@ -16,19 +15,16 @@
         version="1.1"
         style="width: 40%; height: auto;"
       >
-        <!-- SVG content goes here -->
       </svg>
     </div>
   </div>
 </template>
 
 <script>
-import MainHeader from "../components/MainHeaderComponent.vue";
 
 export default {
   name: "NotFound",
   components: {
-    MainHeader,
   },
 };
 </script>

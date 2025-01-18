@@ -6,7 +6,8 @@ import AboutUsView from '../views/AboutUsView.vue';
 import FormLostAnimalView from '../views/FormLostAnimalView.vue';
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
-
+import PostView from '../views/post/PostView.vue';
+import NotFoundView from '../views/404View.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -44,6 +45,17 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView,
+    },
+    {
+      path: '/post/:id', 
+      name: 'post-view',
+      component: PostView,
+      props: true 
+    },
+    {
+      path: '/404', 
+      name: '404-view',
+      component: NotFoundView,
     },
   ],
 });

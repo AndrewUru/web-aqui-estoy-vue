@@ -11,7 +11,7 @@
       <form class="login-form">
         <h2>Únete a nuestra comunidad</h2>
         <button class="google-login">
-          <Icon name="google" /> Continuar con Google
+          <img src="/icons/google.svg" alt="Google Icon" /> Continuar con Google
         </button>
         <div class="or-container">
           <div class="separator-line"></div>
