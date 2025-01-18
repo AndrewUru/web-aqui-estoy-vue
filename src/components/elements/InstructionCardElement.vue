@@ -1,10 +1,11 @@
 <script>
-import instructionData from '@/data/intructions.json';
+
+import instructionsData from "../../data/instructions.json";
 
 export default {
   data() {
     return {
-      instruction: instructionData, // Aquí puedes poner un valor por defecto o cargar los datos de alguna fuente
+      instruction: instructionsData, // Aquí puedes poner un valor por defecto o cargar los datos de alguna fuente
     };
   },
 };

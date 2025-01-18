@@ -1,40 +1,32 @@
----
-import InstructionCard from "../components/elements/InstructionCard.vue";
-import instructions from "../data/instructions.json";
----
+<template>
+  <div class="landing-page-2">
+    <div class="title">
+      <h2>¿Cómo funciona?</h2>
+    </div>
 
-<div class="landing-page-2">
-  <div class="title">
-    <h2>¿Cómo funciona?</h2>
-  </div>
+    <div class="using-benefits-section">
+      <div class="back-line"></div>
+      <div class="card-container">
+        <InstructionCard v-for="(instruction, index) in instructions" :key="index" :instruction="instruction" />
+      </div>
+    </div>
 
-  <div class="using-benefits-section">
-    <div class="back-line"></div>
-    <div class="card-container">
-      {
-        instructions.map((instruction) => (
-          <InstructionCard instruction={instruction} />
-        ))
-      }
+    <div class="explanation">
+      <p>
+        ¡Cada reencuentro cuenta! Da el primer paso para reunir a más mascotas con
+        sus familias.
+      </p>
+    </div>
+
+    <div class="call-to-action">
+      <div class="call-to-action-text">
+        <h2>¡Únete a la búsqueda!</h2>
+      </div>
     </div>
   </div>
-
-  <div class="explanation">
-    <p>
-      ¡Cada reencuentro cuenta! Da el primer paso para reunir a más mascotas con
-      sus familias.
-    </p>
-  </div>
-
-  <div class="call-to-action">
-    <div class="call-to-action-text">
-      <h2>¡Únete a la búsqueda!</h2>
-    </div>
-  </div>
-</div>
+</template>
 
 <style>
-  
 
 .title {
   display : flex;
@@ -101,3 +93,20 @@ import instructions from "../data/instructions.json";
     }
   }
 </style>
+
+<script>
+import InstructionCard from "./elements/InstructionCardElement.vue";
+import instructions from "../data/instructions.json";
+
+export default {
+  components: {
+    InstructionCard,
+  },
+  data() {
+    return {
+      instructions,
+    };
+  },
+};
+</script>
+

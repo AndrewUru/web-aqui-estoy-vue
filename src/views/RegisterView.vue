@@ -1,57 +1,50 @@
---- 
-import petlogin from "/images/petLogin.svg?url";
-import "../styles/global.css";
-import MainHeader from "../components/MainHeader.vue";
-import EyeTracking from "../icons/eye-tracking.vue";
-import { Icon } from 'astro-icon/components'
----
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registro - ¡Aquí Estoy!</title>
-</head>
-<MainHeader />
-<div class="split-screen">
-  <div class="left-side">
-    <h1>Tu comunidad, su camino a casa.</h1>
-    <h2>
-      Conecta, busca, y encuentra a tu mascota perdida mientras construimos una
-      comunidad solidaria.
-    </h2>
-    <img src={petlogin} alt="Icono" class="pet-svg-icon" />
-  </div>
-  <div class="right-side">
-    <form class="login-form">
-      <h2>Únete a nuestra comunidad</h2>
-      <button class="google-login">
-        <Icon name="google" /> Continuar con Google
-      </button>
-      <div class="or-container">
-        <div class="separator-line"></div>
-        <div class="or-separator">o</div>
-        <div class="separator-line"></div>
-      </div>
-      <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
-      <input type="email" required class="input-field" />
-      <label class="form-label password-label">
-        Contraseña
-        <button type="button" class="password-toggle">
-          <EyeTracking/>
+<template>
+  <div class="split-screen">
+    <div class="left-side">
+      <h1>Tu comunidad, su camino a casa.</h1>
+      <h2>
+        Conecta, busca, y encuentra a tu mascota perdida mientras construimos una
+        comunidad solidaria.
+      </h2>
+    </div>
+    <div class="right-side">
+      <form class="login-form">
+        <h2>Únete a nuestra comunidad</h2>
+        <button class="google-login">
+          <Icon name="google" /> Continuar con Google
         </button>
-      </label>
-      <input type="password" required class="input-field" />
-      <button type="submit" class="login-button">Registrarme</button>
-    </form>
+        <div class="or-container">
+          <div class="separator-line"></div>
+          <div class="or-separator">o</div>
+          <div class="separator-line"></div>
+        </div>
+        <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
+        <input type="email" required class="input-field" />
+        <label class="form-label password-label">
+          Contraseña
+          <button type="button" class="password-toggle">
+            <img src="/icons/eye-tracking.svg" alt="Clock Icon" />
+          </button>
+        </label>
+        <input type="password" required class="input-field" />
+        <button type="submit" class="login-button">Registrarme</button>
+      </form>
+    </div>
   </div>
-</div>
+</template>
 
-<style>
-  
-  body {
-    margin: 0;
+<script>
+
+export default {
+  name: 'RegisterView',
+  components: {
+
   }
+}
+</script>
 
+<style scoped>
+  
   .split-screen {
     display: flex;
     height: 100vh;
@@ -215,13 +208,5 @@ import { Icon } from 'astro-icon/components'
   }
 }
 
-
-.form-links a {
-  
-}
-
-.form-links a:hover {
-  text-decoration: underline;
-}
-
 </style>
+

@@ -29,7 +29,7 @@ export default {
       comments.map((comment: { name: string; text: string }) => {
         const backgroundColor = generateColorFromName(comment.name);
         return (
-          <div class="comment" style={`background-color: ${backgroundColor};`}>
+          <div class="comment" :style="{ backgroundColor: backgroundColor }">
             <p class="comment-name">{comment.name}:</p>
             <p>{comment.text}</p>
           </div>

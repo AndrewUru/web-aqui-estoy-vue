@@ -1,0 +1,146 @@
+<template>
+  <div class="form-container">
+    <h1>Formulario de búsqueda</h1>
+    <p class="text-top"><strong>Cuéntanos todos los detalles sobre tu familiar peludo ...</strong></p>
+    <form @submit.prevent="onSubmit">
+      <label for="name">Nombre:
+        <input type="text" name="name" id="name" v-model="formData.name">
+      </label>
+      <label class="label-group a">Última vez visto</label>
+      <label for="date"> <em>Fecha:</em>
+        <input type="date" name="date" id="date" v-model="formData.date">
+      </label>
+      <label for="time"><em>Hora:</em>
+        <input type="text" placeholder="Ejemplo 00:00" name="time" id="time" v-model="formData.time">
+      </label>
+      <label for="country">País:
+        <input type="text" name="country" id="country" v-model="formData.country">
+      </label>
+      <label for="city">Ciudad:
+        <input type="text" name="city" id="city" v-model="formData.city">
+      </label>
+      <label for="street">Calle:
+        <input type="text" name="street" id="street" v-model="formData.street">
+      </label>
+      <label class="label-group b">Contacto</label>
+      <label for="number"><em>Número:</em>
+        <input type="text" name="number" id="number" v-model="formData.number">
+      </label>
+      <label for="email"><em>Email:</em>
+        <input type="text" name="email" id="email" v-model="formData.email">
+      </label>
+      <label for="description">Descripción:
+        <input type="text" name="description" id="description" v-model="formData.description">
+        <p class="text-form"><strong> Pequeña descripción sobre su compañera/o (datos que puedan distinguirle)</strong></p>
+      </label>
+      <label for="file">Foto:
+        <input class="select-file" id="button-file" type="file" name="file" @change="onFileChange">
+        <p class="text-form"><strong>Asegúrese de que se le distinga
+          lo mejor posible, una buena foto da más
+          oportunidades de encontrarle</strong></p>
+      </label>
+      <button id="form-submit">Finalizar</button>
+    </form>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      formData: {
+        name: '',
+        date: '',
+        time: '',
+        country: '',
+        city: '',
+        street: '',
+        number: '',
+        email: '',
+        description: '',
+        file: null
+      }
+    }
+  },
+  methods: {
+    onSubmit() {
+      // TODO: Implementar lógica para enviar el formulario
+      console.log(this.formData)
+    },
+    onFileChange(event) {
+      this.formData.file = event.target.files[0]
+    }
+  }
+}
+</script>
+
+<style scoped>
+:root {
+  background-color: var(--color-azul-medio);
+}
+
+.form-container {
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  background-color: white;
+  width: 80%;
+  height: 90%;
+  padding: 1%;
+  font-family: Montserrat, sans-serif;
+  display: grid;
+  justify-items: center;
+  color: var(--color-azul-oscuro);
+
+  & .text-top {
+    padding-bottom: 1rem;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  form {
+    display: grid;
+    grid-template-columns: 400px;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+
+    & label {
+      display: inline-grid;
+      margin-bottom: 1rem;
+      color: var(--color-azul-oscuro);
+
+      & input {
+        border: 1px solid var(--color-azul-oscuro);
+        background: var(--color-celeste);
+        height: 25px;
+        font-size: 1rem;
+        padding: 4px 10px;
+        color: var(--color-azul-oscuro);
+        &::placeholder {
+          color: var(--color-azul-oscuro);
+        }
+      }
+    }
+
+    & .label-group {
+      margin-top: 10px;
+    }
+
+    & .text-form {
+      font-size: 13px;
+    }
+  }
+
+  & #form-submit {
+    background-color: var(--color-azul-claro);
+    font-family: Montserrat, sans-serif;
+    color: var(--color-celeste);
+    font-size: 1rem;
+    border: 2px var(--color-azul-oscuro);
+    filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
+    padding: 10px;
+    border-radius: 10px;
+    width: 6rem;
+  }
+}
+</style>

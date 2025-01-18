@@ -1,37 +1,29 @@
----
-const { lostanimal } = Astro.props;
-
-import FlagWaving from "../../icons/FlagWaving.vue";
-import PhoneIcon from "../../icons/PhoneIconPls.vue"
-import ClockIcon from "../../icons/ClockIcon.vue";
-import TextIcon from "../../icons/TextIcon.vue";
----
-
-<div class="lostanimal-card">
+<template>
+  <div class="lostanimal-card">
     <div class="head-card">
-        <h2>{lostanimal.nameAgePet}</h2>
-        <button><PhoneIcon/></button>  
+      <h2>{{ lostanimal.nameAgePet }}</h2>
+      <button><img src="/icons/PhoneIconPls.svg" alt="Phone Icon" /></button>  
     </div>
-    <img class="contain" src={lostanimal.profilePic} alt="">
+    <img class="contain" :src="lostanimal.profilePic" alt="">
     <div class="footer-card">
-        <div class="footer-container clock">
-            <ClockIcon/>
-            <p>{lostanimal.lostAddress}</p>
+      <div class="footer-container clock">
+        <img src="/icons/ClockIcon.svg" alt="Clock Icon" />
+        <p>{{ lostanimal.lostAddress }}</p>
+      </div>
+      <div class="footer-container bottom">
+        <div class="flag"><img src="/icons/ClockIcon.svg" alt="Clock Icon" />
+          <p>{{ lostanimal.lastTimeSeen }}</p></div>
+        <div class="chat">
+          <router-link :to="`/post/${lostanimal.id}`" class="lostanimal-card">
+            <img src="/icons/FlagWaving.svg" alt="Flag Icon" />
+          </router-link>
         </div>
-        <div class="footer-container bottom">
-          <div class="flag"><FlagWaving/>
-            <p>{lostanimal.lastTimeSeen}</p></div>
-            <div class="chat">
-              <a href={`/post/${lostanimal.id}`} class="lostanimal-card">
-                <TextIcon/>
-              </a>
-            </div>
-        </div>
+      </div>
     </div>
-    </a>
-</div>
+  </div>
+</template>
 
-<style>
+<style scoped>
 .lostanimal-card{
   filter: drop-shadow(0 0 0.1rem rgb(203, 213, 214));
   margin : 30px;
@@ -110,3 +102,16 @@ import TextIcon from "../../icons/TextIcon.vue";
     
 }   
 </style>
+
+<script setup>
+import { defineProps } from 'vue';
+
+
+defineProps({
+  lostanimal: {
+    type: Object,
+    required: true
+  }
+})
+</script>
+
