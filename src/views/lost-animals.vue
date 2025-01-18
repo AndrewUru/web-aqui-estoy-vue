@@ -2,26 +2,29 @@
 /*SUPER IMPORTANTE PONER EN MAYUS LA PRIMERA LETRA DEL COMPONENTE*/
 import LostCard from "../components/elements/LostCard.vue";
 import lostAnimals from "../data/lostanimals.json";
-import MainHeader from "../components/MainHeader.vue";
-import "../styles/global.css";
-
+import Header from "../components/MainHeader.vue";
+import FooterHero from "../components/FooterHero.vue";
+import "../styles/global.css";  
 ---
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>En búsqueda- ¡Aquí Estoy!</title>
 </head>
-<MainHeader />
+<Header />
 <div class="container-lostanimals">
-
   <h1>Mascotas que quieren volver a casa</h1>
-  <select name="city" id="city">
-    <!-- Pendiente de API-->
-    <option value="laspalmas">Las Palmas de G.C.</option>
-    <option value="telde">Telde</option>
-    <option value="sanmateo">San Mateo</option>
-    <option value="maspalomas">Maspalomas</option>
-  </select>
+  <div class="select-cities">
+    <select name="city" id="city">
+      <!-- Pendiente de API-->
+      <option value="laspalmas">Las Palmas de G.C.</option>
+      <option value="telde">Telde</option>
+      <option value="sanmateo">San Mateo</option>
+      <option value="maspalomas">Maspalomas</option>
+    </select>
+  </div>
+  
+    
   <div class="lost-animal-cards">
     
     {
@@ -31,7 +34,9 @@ import "../styles/global.css";
     }
   
   </div>
+
 </div>
+<FooterHero/>
 
 <style>
 :root{
@@ -40,16 +45,32 @@ import "../styles/global.css";
 
 .container-lostanimals{
   display : grid;
-  flex-direction : column;
-  justify-content: center;
+  justify-items: center;
+  font-family: Montserrat, sans-serif;
   & h1{
-    margin : auto;;
+    margin : 50px 0;
+    color: var(--color-celeste);
+    filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
+    font-size: 2.5rem;
   }
+  & .select-cities {
+    display: grid;
+    justify-content: end;
+    
+    & select {
+    background-color: var(--color-celeste);
+    font-family: Montserrat, sans-serif;
+    border-radius : 5px;
+    width: 200px;
+    text-align: center;
+    }
+  }
+  
 }
 .lost-animal-cards {
-  width : 1200px;
+  width : 1400px;
   display : grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   margin : 30px;
 }
 

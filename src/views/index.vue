@@ -3,7 +3,6 @@ import MainHero from "../components/MainHero.vue"
 import TestimonialsHero from "../components/TestimonialsHero.vue"
 import InstructionsHero from "../components/InstructionsHero.vue"
 import FooterHero from "../components/FooterHero.vue"
-import InstructionCard from "../components/elements/InstructionCard.vue"
 import "../styles/global.css";  
 
 ---

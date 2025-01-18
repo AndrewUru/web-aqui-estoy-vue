@@ -1,24 +1,26 @@
 <script>
-const { instruction } = Astro.props;
+import instructionData from '@/data/intructions.json';
 
-if (!instruction) {
-  console.error("No se pasó la prop 'instruction' al componente.");
-}
+export default {
+  data() {
+    return {
+      instruction: instructionData, // Aquí puedes poner un valor por defecto o cargar los datos de alguna fuente
+    };
+  },
+};
+
 </script>
 
 <template>
-<div class="card">
-  {
-    instruction ? (
-      <>
-        <h2>{instruction.title}</h2>
-        <p>{instruction.description}</p>
-      </>
-    ) : (
+  <div class="card">
+    <div v-if="instruction">
+      <h2>{{ instruction.title }}</h2>
+      <p>{{ instruction.description }}</p>
+    </div>
+    <div v-else>
       <p>Sin datos disponibles.</p>
-    )
-  }
-</div>
+    </div>
+  </div>
 </template>
 
 <style>
