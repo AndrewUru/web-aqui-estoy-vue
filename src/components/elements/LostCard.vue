@@ -1,0 +1,63 @@
+---
+const { lostanimal } = Astro.props;
+
+import FlagWaving from "../../icons/FlagWaving.vue";
+import PhoneIcon from "../../icons/PhoneIconPls.vue"
+import ClockIcon from "../../icons/ClockIcon.vue";
+
+---
+
+<div class="lostanimal-card">
+    <div class="head-card">
+        <h2>{lostanimal.nameAgePet}</h2>
+        <PhoneIcon/>
+    </div>
+    <img src={lostanimal.profilePic} alt="">
+    <div class="footer-card">
+        <div class="footer-container clock">
+            <ClockIcon/>
+            <p>{lostanimal.lostAddress}</p>
+        </div>
+        <div class="footer-container flag">
+            <FlagWaving/>
+            <p>{lostanimal.lastTimeSeen}</p>
+        </div>
+        
+    </div>
+    
+</div>
+
+<style>
+.lostanimal-card{
+    border-radius: 25px;
+    display : flex;
+    flex-direction: column;
+    width: 300px;
+    height: 400px;
+    background-color: var(--color-celeste);
+    & .head-card {
+        display : flex;
+        justify-content: space-around;
+    }
+    & img {
+        max-width: 100%;
+        height: 200px;
+    }   
+    & .footer-card {
+        margin : 0px 20px;
+        & .footer-container {
+        display: flex;
+        margin: 10px;
+        align-items: flex-start;
+        justify-content: baseline;
+        &.clock {
+            margin-bottom: 0;
+        }
+        &.flag {
+            margin-top: 0;
+        }
+        }
+    }
+    
+}   
+</style>

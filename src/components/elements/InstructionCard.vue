@@ -1,0 +1,53 @@
+<script>
+const { instruction } = Astro.props;
+
+if (!instruction) {
+  console.error("No se pasó la prop 'instruction' al componente.");
+}
+</script>
+
+<template>
+<div class="card">
+  {
+    instruction ? (
+      <>
+        <h2>{instruction.title}</h2>
+        <p>{instruction.description}</p>
+      </>
+    ) : (
+      <p>Sin datos disponibles.</p>
+    )
+  }
+</div>
+</template>
+
+<style>
+.card {
+  font-family: Montserrat, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 290px;
+  width: 340px;
+  overflow: hidden;
+  border-radius: 50px;
+  background-color: var(--color-azul-medio);
+  justify-content: space-around;
+  align-items: center;
+  color: var(--color-celeste);
+  text-align: center;
+  padding: 5px;
+}
+
+.card h2 {
+  font-size: 25px;
+  margin: 20px 20px 0px 20px;
+}
+
+.card p {
+  font-size: 18px;
+  padding: 10px;
+  padding-top: 0;
+  margin-top : 0;
+}
+
+</style>

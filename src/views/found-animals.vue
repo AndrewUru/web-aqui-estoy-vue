@@ -1,0 +1,11 @@
+---
+import MainHeader from "../components/MainHeader.vue";
+import "../styles/global.css";
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - ¡Aquí Estoy!</title>
+</head>
+<MainHeader />

@@ -1,0 +1,56 @@
+---
+/*SUPER IMPORTANTE PONER EN MAYUS LA PRIMERA LETRA DEL COMPONENTE*/
+import LostCard from "../components/elements/LostCard.vue";
+import lostAnimals from "../data/lostanimals.json";
+import MainHeader from "../components/MainHeader.vue";
+import "../styles/global.css";
+
+---
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>En búsqueda- ¡Aquí Estoy!</title>
+</head>
+<MainHeader />
+<div class="container-lostanimals">
+
+  <h1>Mascotas que quieren volver a casa</h1>
+  <select name="city" id="city">
+    <!-- Pendiente de API-->
+    <option value="laspalmas">Las Palmas de G.C.</option>
+    <option value="telde">Telde</option>
+    <option value="sanmateo">San Mateo</option>
+    <option value="maspalomas">Maspalomas</option>
+  </select>
+  <div class="lost-animal-cards">
+    
+    {
+      lostAnimals.map((animal) => (
+        <LostCard lostanimal={animal} />
+      ))
+    }
+  
+  </div>
+</div>
+
+<style>
+:root{
+  background-color: var(--color-azul-medio);
+}
+
+.container-lostanimals{
+  display : grid;
+  flex-direction : column;
+  justify-content: center;
+  & h1{
+    margin : auto;;
+  }
+}
+.lost-animal-cards {
+  width : 1200px;
+  display : grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  margin : 30px;
+}
+
+</style>

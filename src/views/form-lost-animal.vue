@@ -1,0 +1,134 @@
+---
+import MainHeader from "../components/MainHeader.vue";
+import "../styles/global.css";
+import Star from "../icons/star.vue"
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Aquí Estoy!</title>
+</head>
+<MainHeader />
+
+<div class="form-container">
+  <h1>Formulario de búsqueda</h1>
+  <p class="text-top"><strong>Cuéntanos todos los detalles sobre tu familiar peludo ...</strong></p>
+  <form>
+    <label for="name">Nombre:
+      <input type="text" name="name" id="">
+    </label>
+    
+
+    <label class="label-group a">Última vez visto</label>
+    <span><Star/>
+    <label for="date"> Fecha:
+      <input type="date" name="date">
+    </label></span>
+    <span><Star/>
+    <label for="time">Hora:
+      <input type="text" placeholder="Ejemplo 00:00">
+    </label></span>
+
+    <label for="country">País:
+      <input type="text" name="country">
+    </label>
+
+    <label for="city">Ciudad:
+      <input type="text" name="city">
+    </label>
+
+    <label for="street">Calle:
+      <input type="text" name="street">
+    </label>
+    
+    <label class="label-group b">Contacto</label>
+    <span><Star/><label for="number">Número:
+      <input type="text" name="number">
+    </label> </span>
+    <span><Star/><label for="email">Email:
+      <input type="text" name="email">
+    </label></span>
+        
+    <label for="description">Descripción:
+      <input type="text" name="description">
+      <p class="text-form"><strong> Pequeña descripción sobre su compañera/o (datos que puedan distinguirle)</strong></p>
+      </label>
+
+    <label for="file">Foto:
+      <input class="select-file" id="button-file" type="file" name="file">
+      <p class="text-form"><strong>Asegúrese de que se le distinga
+        lo mejor posible, una buena foto da más
+        oportunidades de encontrarle</strong></p>
+    </label>
+  </form>
+  <button id="form-submit">Finalizar</button>
+</div>
+</div>
+
+<style>
+:root {
+  background-color: var(--color-azul-medio);
+
+}
+.form-container {
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  background-color: white;
+  width: 80%;
+  height: 90%;
+  padding: 1%;
+  font-family: Montserrat, sans-serif;
+  display : grid;
+  justify-items: center;
+  color: var(--color-azul-oscuro);
+  
+  & .text-top {
+    padding-bottom: 1rem;
+    margin-top: 0;
+    text-align: center;
+  }
+  form {
+  display: grid;
+  grid-template-columns: 400px;
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  
+    & label {
+    display: inline-grid;
+    margin-bottom: 1rem;
+    color: var(--color-azul-oscuro);
+
+      & input {
+      border: 1px solid var(--color-azul-oscuro);
+      background: var(--color-celeste);
+      height: 25px;
+      font-size: 1rem;
+      padding: 4px 10px;
+      color: var(--color-azul-oscuro);
+      }
+    }
+    & .label-group{
+      margin-top: 10px;
+    }
+
+    & .text-form {
+      font-size: 13px;
+    }
+  }
+
+  & #form-submit {
+      background-color: var(--color-azul-claro);
+      font-family: Montserrat, sans-serif;
+      color: var(--color-celeste);
+      font-size: 1rem;
+      border : 2px var(--color-azul-oscuro);
+      filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
+      padding: 10px;
+      border-radius: 10px;
+      width: 6rem;
+    }
+}
+
+</style>
