@@ -31,10 +31,10 @@ import { RouterLink } from 'vue-router';
   font-family: Montserrat, sans-serif;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
   background-color: var(--color-azul-oscuro);
   padding: 10px 20px;
-
+  position: relative;
   height: var(--header-height);
 }
 
@@ -43,14 +43,13 @@ import { RouterLink } from 'vue-router';
   display: flex;
   gap: 30px;
   align-items: center;
-  margin-left: 0;
+  color: var(--color-azul-oscuro);
 }
 
 .nav-links a,
 .header-right a {
   color: var(--color-celeste);
   text-decoration: none;
-  padding: 3px 6px;
 }
 
 .nav-links a:hover,
@@ -61,7 +60,9 @@ import { RouterLink } from 'vue-router';
 .header-left {
   display: flex;
   align-items: center;
+  /* Centra verticalmente el contenido */
   gap: 20px;
+  /* Espaciado entre los elementos */
 }
 
 .header-left p {
@@ -69,7 +70,7 @@ import { RouterLink } from 'vue-router';
   font-family: "Luckiest Guy", system-ui;
   font-size: 20px;
   margin: 0;
-  width: 150px;
+  /* Elimina cualquier margen predeterminado */
 }
 
 
@@ -146,10 +147,10 @@ import { RouterLink } from 'vue-router';
   }
 }
 
-/* Responsivo para pantallas medianas 
+/* Responsivo para pantallas medianas */
 @media (max-width: 1024px) {
   .nav-links {
-    gap: 30px;
+    gap: 20px;
   }
 
   .header-right {
@@ -165,5 +166,5 @@ import { RouterLink } from 'vue-router';
   .button-register {
     width: 100px;
   }
-}*/
+}
 </style>

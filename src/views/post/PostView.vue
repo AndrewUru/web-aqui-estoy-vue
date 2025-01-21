@@ -2,8 +2,8 @@
   <div>
     <Header />
     <main>
-      <div class="lost-animal-post">
-        <PostView :post="post" />
+      <div v-if="post" class="lost-animal-post">
+        <PostComponent :post="post" />
       </div>
     </main>
     <FooterHero />
@@ -11,13 +11,16 @@
 </template>
 
 <script>
+import PostComponent from "@/components/PostComponent.vue";
 import postDataRaw from "../../data/post.json";
 
 export default {
   name: 'PostViewPage',
-  props: ['id'],  // Recibe el parámetro id
   mounted() {
     console.log(this.id);
+  },
+  components: {
+    PostComponent
   },
   data() {
     return {
@@ -25,10 +28,12 @@ export default {
     };
   },
   created() {
-    const postData = Array.isArray(postDataRaw) ? postDataRaw : [postDataRaw];
+
+    const postData = postDataRaw
     const id = this.$route.params.id;
     console.log('Post ID:', id);  // Verifica que la ID se captura bien
-    this.post = postData.find((p) => p.id === parseInt(id));
+    console.log(postData)
+    this.post = postData.find((p) => p.id == id);
 
     if (!this.post) {
       console.error("Post no encontrado.");

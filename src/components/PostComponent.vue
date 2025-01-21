@@ -18,7 +18,7 @@
       </div>
       <div class="comments-section">
         <h3>Comentarios:</h3>
-        <CommentsSection :comments="post.comments" />
+        <!-- <CommentsSection :comments="post.comments" /> -->
       </div>
     </div>
   </main>
@@ -75,7 +75,7 @@ main {
 </style>
 
 <script>
-import { CommentsSection } from "../elements";
+// import { CommentsSection } from "../elements";
 
 export default {
   name: 'PostComponent',
@@ -86,7 +86,7 @@ export default {
     }
   },
   components: {
-    CommentsSection
+    // CommentsSection
   }
 }
 </script>

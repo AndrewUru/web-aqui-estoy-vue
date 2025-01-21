@@ -2,7 +2,9 @@
   <div class="lostanimal-card">
     <div class="head-card">
       <h2>{{ lostanimal.nameAgePet }}</h2>
-      <button><img src="/icons/PhoneIconPls.svg" alt="Phone Icon" /></button>
+      <button>
+        <Phone />
+      </button>
     </div>
     <img class="contain" :src="lostanimal.profilePic" alt="">
     <div class="footer-card">
@@ -15,7 +17,7 @@
           <p>{{ lostanimal.lastTimeSeen }}</p>
         </div>
         <div class="chat">
-          <router-link :to="`/${lostanimal.id}`" class="lostanimal-card">
+          <router-link :to="`/post/${lostanimal.id}`" class="lostanimal-card">
             <img src="/icons/FlagWaving.svg" alt="Flag Icon" />
           </router-link>
         </div>
@@ -46,8 +48,8 @@
     background-color: var(--color-celeste);
     border: none;
     border-radius: 25px;
-    max-width: 50px;
-    max-height: 50px;
+    width: 50px;
+    height: 50px;
 
     &:hover {
       background-color: var(--color-azul-claro);
@@ -121,7 +123,7 @@
 
 <script setup>
 import { defineProps } from 'vue';
-
+import Phone from '../icons/phone.vue'
 
 defineProps({
   lostanimal: {

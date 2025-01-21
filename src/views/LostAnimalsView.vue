@@ -33,6 +33,10 @@ export default {
 </script>
 
 <style scoped>
+:root {
+  background-color: var(--color-azul-medio);
+}
+
 .container-lostanimals {
   display: grid;
   justify-items: center;
