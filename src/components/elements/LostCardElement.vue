@@ -123,7 +123,7 @@
 
 <script setup>
 import { defineProps } from 'vue';
-import Phone from '../icons/phone.vue'
+import Phone from '../icons/PhoneComponent.vue'
 
 defineProps({
   lostanimal: {

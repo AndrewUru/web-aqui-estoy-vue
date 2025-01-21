@@ -7,9 +7,10 @@
 
 </template>
 <style scoped>
-.icono {
+svg {
   width: 33px;
   height: 33px;
   object-fit: contain;
+  margin : 5px;
 }
 </style>

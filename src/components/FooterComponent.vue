@@ -53,18 +53,12 @@
 
     <div class="footer-bottom">
       &copy; 2025 ¡Aquí Estoy! – Desarrollada con
-      <i class="fas fa-paw"></i> <i class="fas fa-heart"></i> y usando Vue.js
+      <i class="fas fa-paw"></i> <i class="fas fa-heart"></i> 
     </div>
   </footer>
 </template>
 
 <style scoped>
-
-body {
-  margin: 0;
-  font-family: var(--font-family-base);
-}
-
 /***************************************************
        * Footer
        ***************************************************/

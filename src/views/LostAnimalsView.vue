@@ -52,11 +52,9 @@ export default {
 </script>
 
 <style scoped>
-:root {
-  background-color: var(--color-azul-medio);
-}
 
 .container-lostanimals {
+  background-color: var(--color-azul-medio);
   display: grid;
   justify-items: center;
   font-family: Montserrat, sans-serif;
