@@ -96,6 +96,7 @@
   }
 }
 </style>
+
 <script>
 import InstructionCard from "./elements/InstructionCardElement.vue";
 import instructions from "../data/instructions.json";

@@ -34,7 +34,8 @@ export default {
   }
 };
 </script>
-<style>
+
+<style scoped>
 .landing-page-1 {
   margin: auto;
   background-color: var(--color-celeste);
@@ -99,9 +100,7 @@ export default {
     }
 
     & #container-light-blue {
-      /*Se mueve mucho el contenedor al minimizar y etc*/
       position: absolute;
-      /*top: 75%; left: 2.5%; right : 2.5%;*/
       top: 500px;
       left: 40px;
       background-color: white;

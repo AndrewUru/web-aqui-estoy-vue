@@ -59,13 +59,6 @@
 </template>
 
 <style>
-:root {
-  --color-azul-oscuro: #041f2a;
-  --color-blanco: #ffffff;
-  --color-accion: #f0c40f;
-  /* color de acento */
-  --font-family-base: "Montserrat", sans-serif;
-}
 
 body {
   margin: 0;
