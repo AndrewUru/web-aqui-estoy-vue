@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* Contenedor principal para las tarjetas de testimonio */
 .landing-page-3 {
   display: flex;

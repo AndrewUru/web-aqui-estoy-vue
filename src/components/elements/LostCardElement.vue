@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .lostanimal-card {
   filter: drop-shadow(0 0 0.1rem rgb(203, 213, 214));
   margin: 30px;

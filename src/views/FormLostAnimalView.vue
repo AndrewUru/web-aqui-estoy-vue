@@ -75,12 +75,7 @@ export default {
 }
 </script>
 
-<style>
-:root {
-  background-color: var(--color-azul-medio);
-
-}
-
+<style scoped>
 .form-container {
   margin: auto;
   margin-top: 1%;

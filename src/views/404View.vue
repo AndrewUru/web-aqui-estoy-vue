@@ -544,7 +544,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .svg-container {
   display: flex;
   justify-content: center;

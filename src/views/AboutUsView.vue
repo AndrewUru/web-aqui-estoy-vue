@@ -67,7 +67,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .about-page {
   background-color: var(--color-celeste);
   display: flex;

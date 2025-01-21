@@ -39,7 +39,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .comments-section {
   background-color: #f7fbff;
   padding: 20px;

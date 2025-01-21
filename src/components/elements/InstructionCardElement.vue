@@ -24,7 +24,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .card {
   font-family: Montserrat, sans-serif;
   display: flex;

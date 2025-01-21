@@ -39,7 +39,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 /* Estilo para las tarjetas de testimonio */
 .testimony-card {
   font-family: Montserrat, sans-serif;
