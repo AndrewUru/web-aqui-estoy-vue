@@ -1,7 +1,7 @@
 <template>
   <div class="auth-form">
-    <form class="login-form" v-if="isLogin">
-      <h2>BIENVENIDO</h2>
+    <form class="login-form" @submit.prevent v-if="isLogin">
+      <h2>BIENVENIDO DE VUELTA</h2>
       <button class="google-login">
         <img src="/icons/google.svg" alt="Google Icon" /> Continuar con Google
       </button>
@@ -11,24 +11,24 @@
         <div class="separator-line"></div>
       </div>
       <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
-      <input type="email" required class="input-field" />
+      <input type="email" v-model="login.email" required class="input-field" />
       <label class="form-label password-label">
         Contraseña
         <button type="button" class="password-toggle">
           <img src="/icons/eye-tracking.svg" alt="Eye tracking Icon" />
         </button>
       </label>
-      <input type="password" required class="input-field" />
+      <input type="password" v-model="login.password" required class="input-field" />
       <div class="form-links password">
         <a href="#">¿Olvidaste tu contraseña?</a>
       </div>
-      <button type="submit" class="login-button">Acceder</button>
+      <button type="submit" @click="$emit('login', login)" class="login-button">Acceder</button>
       <div class="form-links signin">
         <a href="register">¿Aún no tienes cuenta? Regístrate</a>
       </div>
     </form>
 
-    <form class="login-form" v-else>
+    <form class="login-form" @submit.prevent v-else>
       <h2>Únete a nuestra comunidad</h2>
       <button class="google-login">
         <img src="/icons/google.svg" alt="Google Icon" /> Continuar con Google
@@ -39,15 +39,15 @@
         <div class="separator-line"></div>
       </div>
       <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
-      <input type="email" required class="input-field" />
+      <input type="email" v-model="login.email" required class="input-field" />
       <label class="form-label password-label">
         Contraseña
         <button type="button" class="password-toggle">
           <img src="/icons/eye-tracking.svg" alt="Eye-tracking Icon" />
         </button>
       </label>
-      <input type="password" required class="input-field" />
-      <button type="submit" class="login-button">Registrarme</button>
+      <input type="password" v-model="login.password" required class="input-field" />
+      <button type="submit" @click="$emit('register', login)" class="login-button">Registrarme</button>
     </form>
   </div>
 </template>
@@ -59,7 +59,25 @@ export default {
       type: Boolean,
       required: true
     }
-  }
+  },
+  events: {
+    login: {
+      type: Function,
+      required: true
+    },
+    register: {
+      type: Function,
+      required: true
+    }
+  },
+  data() {
+        return {
+            login: {
+              email: "",
+              password: "",
+            }
+        }
+    },
 }
 </script>
 

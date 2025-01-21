@@ -14,6 +14,9 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+      /*beforeEnter: (to, from, next) => {
+
+      }*/
     },
     {
       path: '/lost-animals',

@@ -11,7 +11,7 @@
       </select>
     </div>
     <div class="lost-animal-cards">
-      <LostCard v-for="animal in lostAnimals" :lostanimal="animal" :key="animal.id" />
+      <LostCard v-for="post in posts" :posts="post" :key="post.id" />
     </div>
   </div>
 </template>
@@ -19,24 +19,25 @@
 <script>
 import { collection, getDocs, query } from "firebase/firestore";
 import LostCard from "../components/elements/LostCardElement.vue";
-import { db } from "../../firebase";
+import { db } from "../firebase";
 
 export default {
+  name: 'LostAnimalsView',
   components: {
     LostCard,
   },
   data() {
     return {
-      lostAnimals: []
+      posts: []
     };
   },
   firestore() {
     return {
-      lostAnimals: collection(db, 'lost-animals')
+      posts: collection(db, 'posts')
     }
   },
   async mounted() {
-    const q = query(collection(db, "lost-animals"));
+    const q = query(collection(db, "posts"));
     const querySnapshot = await getDocs(q);
 
     const values = querySnapshot.docs.map((doc) => {
@@ -46,45 +47,43 @@ export default {
       };
     });
 
-    this.lostAnimals = values;
+    this.posts = values;
   }
 };
 </script>
 
 <style scoped>
 
-.container-lostanimals {
-  background-color: var(--color-azul-medio);
-  display: grid;
+.container-lostanimals{
+  background: var(--color-azul-claro);
+  display : grid;
   justify-items: center;
   font-family: Montserrat, sans-serif;
-
-  & h1 {
-    margin: 50px 0;
+  & h1{
+    margin : 50px 0;
     color: var(--color-celeste);
     filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
     font-size: 2.5rem;
   }
-
   & .select-cities {
     display: grid;
     justify-content: end;
 
     & select {
-      background-color: var(--color-celeste);
-      font-family: Montserrat, sans-serif;
-      border-radius: 5px;
-      width: 200px;
-      text-align: center;
+    background-color: var(--color-celeste);
+    font-family: Montserrat, sans-serif;
+    border-radius : 5px;
+    width: 200px;
+    text-align: center;
     }
   }
 
 }
-
 .lost-animal-cards {
-  width: 1400px;
-  display: grid;
+  width : 1400px;
+  display : grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  margin: 30px;
+  margin : 30px;
 }
+
 </style>

@@ -53,7 +53,7 @@
 
     <div class="footer-bottom">
       &copy; 2025 ¡Aquí Estoy! – Desarrollada con
-      <i class="fas fa-paw"></i> <i class="fas fa-heart"></i> 
+      <i class="fas fa-paw"></i> <i class="fas fa-heart"></i>
     </div>
   </footer>
 </template>
@@ -61,11 +61,12 @@
 <style scoped>
 /***************************************************
        * Footer
-       ***************************************************/
+***************************************************/
 .site-footer {
   background-color: var(--color-azul-oscuro);
-  color: var(--color-blanco);
+  color: white;
   padding: 2rem;
+  font-family: Montserrat, sans-serif;
 }
 
 .footer-container {
@@ -73,25 +74,22 @@
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  /* Para adaptarse a pantallas pequeñas */
   gap: 2rem;
   justify-content: space-between;
 }
 
-/* Bloques de contenido del footer */
 .footer-col {
   min-width: 200px;
   flex: 1;
 }
 
-/* Logo y texto breve */
 .footer-logo {
   display: flex;
   align-items: center;
   font-size: 1.4rem;
   margin-bottom: 1rem;
   text-decoration: none;
-  color: var(--color-blanco);
+  color: white;
 }
 
 .footer-logo img {
@@ -118,7 +116,7 @@
 }
 
 .footer-links a {
-  color: var(--color-blanco);
+  color: white;
   text-decoration: none;
   font-size: 1rem;
 }
@@ -134,7 +132,7 @@
 }
 
 .footer-social a {
-  color: var(--color-blanco);
+  color: white;
   font-size: 1.3rem;
   text-decoration: none;
 }
@@ -143,7 +141,6 @@
   color: var(--color-accion);
 }
 
-/* Separador inferior o texto final */
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 1rem;

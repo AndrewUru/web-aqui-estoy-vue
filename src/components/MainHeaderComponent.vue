@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router';
+import { onAuthStateChanged} from 'firebase/auth';
 </script>
 
 <template>
@@ -16,8 +17,9 @@ import { RouterLink } from 'vue-router';
 
     <nav class="header-right">
       <RouterLink to="/form-lost-animal">Crear publicación</RouterLink>
-      <RouterLink class="button-login" to="/login">Acceder</RouterLink>
+      isLogin ?<RouterLink class="button-login" to="/login">Acceder</RouterLink>
       <RouterLink class="button-register" to="/register">Registrarse</RouterLink>
+      :<RouterLink class="button-profile" to="/profile"><h1>¡Hola, <!--{{auth.currentUser.displayName}}-->!</h1></RouterLink>
     </nav>
 
     <button class="menu-toggle" aria-label="Abrir menú">

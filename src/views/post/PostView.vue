@@ -13,7 +13,7 @@
 <script>
 import PostComponent from "@/components/PostComponent.vue";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db } from "../../firebase";
 // import postDataRaw from "../../data/post.json";
 
 export default {

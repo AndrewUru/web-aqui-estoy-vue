@@ -8,23 +8,63 @@
       </h2>
     </div>
     <div class="right-side">
-      <AuthForm :isLogin="isLogin" />
+      <AuthForm :isLogin="isLogin" @login="login" @register="register"/>
     </div>
   </div>
 </template>
 
-<script setup>
-import { useRoute } from 'vue-router'; // Importa useRoute para acceder a la ruta actual
-import { ref, watch } from 'vue'; // Importa ref y watch para manejar reactividad
+<script>
 import AuthForm from '@/components/AuthFormComponent.vue';
 
-const route = useRoute();  // Accede al objeto de la ruta actual
-const isLogin = ref(route.name === 'login');  // Usamos ref para ser reactivo
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase.js';
 
-// Reaccionamos a los cambios de la ruta
-watch(() => route.name, (newRoute) => {
-  isLogin.value = newRoute === 'login';  // Actualizamos isLogin cuando la ruta cambie
-});
+export default {
+
+  name: 'AuthView',
+  components: {
+    AuthForm,
+  },
+    data() {
+        return {
+            isLogin:false,
+        }
+    },
+    methods: {
+        async login(login) {
+            try {
+                console.log(login.email, login.password)
+                const userCredential = await signInWithEmailAndPassword(auth, login.email, login.password)
+                console.log(userCredential);
+
+               console.log(auth.currentUser);
+
+            } catch (Error) {
+                console.log(Error);
+            }
+        }
+    },
+    mounted() {
+        this.isLogin = this.$route.name === 'login';
+
+        onAuthStateChanged(auth, (user) => {
+            console.log(user)
+            if (user) {
+                console.log("Usuario autenticado", user.uid)
+                this.$router.push({ name: 'home' })
+            } else {
+                console.log("Usuario no autenticado")
+            }
+            console.log("auth", auth.currentUser)
+        })
+    },
+    watch:{
+        $route(to){
+            this.isLogin = to.name === 'login';
+           
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -78,3 +118,4 @@ watch(() => route.name, (newRoute) => {
   background-color: var(--color-azul-claro);
 }
 </style>
+
