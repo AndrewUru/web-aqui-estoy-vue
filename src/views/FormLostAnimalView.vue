@@ -24,12 +24,14 @@
         <input type="text" name="street" id="street" v-model="formData.street" required>
       </label>
       <label class="label-group b">Contacto</label>
-      <label for="number"><em>Número:</em>
+      <label for="number"><em>Número de teléfono:</em>
         <input type="text" name="number" id="number" v-model="formData.number" required>
       </label>
       <label for="email"><em>Email:</em>
         <input type="text" name="email" id="email" v-model="formData.email" required>
       </label>
+      
+        
       <label for="description">Descripción:
         <input type="text" name="description" id="description" v-model="formData.description">
         <p class="text-form"><strong> Pequeña descripción sobre su compañera/o (datos que puedan distinguirle)</strong>
@@ -41,7 +43,16 @@
             lo mejor posible, una buena foto da más
             oportunidades de encontrarle</strong></p>
       </label>
-      <button id="form-submit">Finalizar</button>
+      <div class="reward-container">
+        <label>¿Quiere añadir una recompensa?</label>
+        <input type="checkbox" name="reward" id="reward" v-model="isChecked">
+        <input type="text" v-show="isChecked">
+      </div>
+      
+      <div class="button-submit">
+        <button id="form-submit">Finalizar</button>
+      </div>
+      
     </form>
   </div>
 </div>
@@ -59,13 +70,15 @@ export default {
         date: '2025-01-16',
         time: '11:00',
         country: 'España',
-        city: 'Madrid',
+        city: '',
         street: 'Crta. Loeches',
         number: '44',
+        reward : '',
         email: 'test@mail.com',
         description: 'Description de lo que pasa',
         file: null
-      }
+      },
+      isChecked : false,
     }
   },
   methods: {
@@ -73,12 +86,12 @@ export default {
       // TODO: Implementar lógica para enviar el formulario
       console.log(this.formData)
 
-      const result = await addDoc(collection(db, 'lost-animals'), this.formData)
+      const result = await addDoc(collection(db, 'posts'), this.formData)
       console.log("result", result.id)
     },
     onFileChange(event) {
       this.formData.file = event.target.files[0]
-    }
+    },
   }
 }
 </script>
@@ -134,21 +147,36 @@ export default {
       margin-top: 10px;
     }
 
+    & .reward-container{
+      margin-bottom: 10px;
+      & input {
+        margin-bottom: 10px;
+      }
+    }
+
     & .text-form {
       font-size: 13px;
     }
   }
 
-  & #form-submit {
-    background-color: var(--color-azul-claro);
-    font-family: Montserrat, sans-serif;
-    color: var(--color-celeste);
-    font-size: 1rem;
-    border: 2px var(--color-azul-oscuro);
-    filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
-    padding: 10px;
-    border-radius: 10px;
-    width: 6rem;
+  & .button-submit{
+    display: flex;
+    justify-content: center;
+    & #form-submit {
+      background-color: var(--color-azul-claro);
+      font-family: Montserrat, sans-serif;
+      color: var(--color-celeste);
+      font-size: 1rem;
+      border: 2px var(--color-azul-oscuro);
+      filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
+      padding: 10px;
+      border-radius: 10px;
+      width: 6rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 </style>
