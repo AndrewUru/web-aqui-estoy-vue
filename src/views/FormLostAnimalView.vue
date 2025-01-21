@@ -1,34 +1,37 @@
 <template>
+  <div class="back-form">
   <div class="form-container">
     <h1>Formulario de búsqueda</h1>
     <p class="text-top"><strong>Cuéntanos todos los detalles sobre tu familiar peludo ...</strong></p>
     <form @submit.prevent="onSubmit">
       <label for="name">Nombre:
-        <input type="text" name="name" id="name" v-model="formData.name">
+        <input type="text" name="name" id="name" v-model="formData.name" required>
       </label>
       <label class="label-group a">Última vez visto</label>
       <label for="date"> <em>Fecha:</em>
-        <input type="date" name="date" id="date" v-model="formData.date">
+        <input type="date" name="date" id="date" v-model="formData.date" required>
       </label>
       <label for="time"><em>Hora:</em>
-        <input type="text" placeholder="Ejemplo 00:00" name="time" id="time" v-model="formData.time">
+        <input type="text" placeholder="Ejemplo 00:00" name="time" id="time" v-model="formData.time" required>
       </label>
       <label for="country">País:
-        <input type="text" name="country" id="country" v-model="formData.country">
+        <input type="text" name="country" id="country" v-model="formData.country" required>
       </label>
       <label for="city">Ciudad:
-        <input type="text" name="city" id="city" v-model="formData.city">
+        <input type="text" name="city" id="city" v-model="formData.city" required>
       </label>
       <label for="street">Calle:
-        <input type="text" name="street" id="street" v-model="formData.street">
+        <input type="text" name="street" id="street" v-model="formData.street" required>
       </label>
       <label class="label-group b">Contacto</label>
-      <label for="number"><em>Número:</em>
-        <input type="text" name="number" id="number" v-model="formData.number">
+      <label for="number"><em>Número de teléfono:</em>
+        <input type="text" name="number" id="number" v-model="formData.number" required>
       </label>
       <label for="email"><em>Email:</em>
-        <input type="text" name="email" id="email" v-model="formData.email">
+        <input type="text" name="email" id="email" v-model="formData.email" required>
       </label>
+      
+        
       <label for="description">Descripción:
         <input type="text" name="description" id="description" v-model="formData.description">
         <p class="text-form"><strong> Pequeña descripción sobre su compañera/o (datos que puedan distinguirle)</strong>
@@ -40,9 +43,19 @@
             lo mejor posible, una buena foto da más
             oportunidades de encontrarle</strong></p>
       </label>
-      <button id="form-submit">Finalizar</button>
+      <div class="reward-container">
+        <label>¿Quiere añadir una recompensa?</label>
+        <input type="checkbox" name="reward" id="reward" v-model="isChecked">
+        <input type="text" v-show="isChecked">
+      </div>
+      
+      <div class="button-submit">
+        <button id="form-submit">Finalizar</button>
+      </div>
+      
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -57,13 +70,15 @@ export default {
         date: '2025-01-16',
         time: '11:00',
         country: 'España',
-        city: 'Madrid',
+        city: '',
         street: 'Crta. Loeches',
         number: '44',
+        reward : '',
         email: 'test@mail.com',
         description: 'Description de lo que pasa',
         file: null
-      }
+      },
+      isChecked : false,
     }
   },
   methods: {
@@ -71,21 +86,23 @@ export default {
       // TODO: Implementar lógica para enviar el formulario
       console.log(this.formData)
 
-      const result = await addDoc(collection(db, 'lost-animals'), this.formData)
+      const result = await addDoc(collection(db, 'posts'), this.formData)
       console.log("result", result.id)
     },
     onFileChange(event) {
       this.formData.file = event.target.files[0]
-    }
+    },
   }
 }
 </script>
 
 <style scoped>
+.back-form {
+  background-color: var(--color-azul-claro);
+  padding-top : 20px;
+}
 .form-container {
-  margin: auto;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin : auto;
   background-color: white;
   width: 80%;
   height: 90%;
@@ -130,21 +147,36 @@ export default {
       margin-top: 10px;
     }
 
+    & .reward-container{
+      margin-bottom: 10px;
+      & input {
+        margin-bottom: 10px;
+      }
+    }
+
     & .text-form {
       font-size: 13px;
     }
   }
 
-  & #form-submit {
-    background-color: var(--color-azul-claro);
-    font-family: Montserrat, sans-serif;
-    color: var(--color-celeste);
-    font-size: 1rem;
-    border: 2px var(--color-azul-oscuro);
-    filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
-    padding: 10px;
-    border-radius: 10px;
-    width: 6rem;
+  & .button-submit{
+    display: flex;
+    justify-content: center;
+    & #form-submit {
+      background-color: var(--color-azul-claro);
+      font-family: Montserrat, sans-serif;
+      color: var(--color-celeste);
+      font-size: 1rem;
+      border: 2px var(--color-azul-oscuro);
+      filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
+      padding: 10px;
+      border-radius: 10px;
+      width: 6rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 </style>
