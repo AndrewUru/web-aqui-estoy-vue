@@ -12,12 +12,24 @@
 
 <script>
 import PostComponent from "@/components/PostComponent.vue";
-import postDataRaw from "../../data/post.json";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
+// import postDataRaw from "../../data/post.json";
 
 export default {
   name: 'PostViewPage',
-  mounted() {
-    console.log(this.id);
+  async mounted() {
+
+    const docRef = doc(db, "lost-animals", `${this.$route.params.id}`);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      this.post = docSnap.data()
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
   },
   components: {
     PostComponent
@@ -29,16 +41,18 @@ export default {
   },
   created() {
 
-    const postData = postDataRaw
-    const id = this.$route.params.id;
-    console.log('Post ID:', id);  // Verifica que la ID se captura bien
-    console.log(postData)
-    this.post = postData.find((p) => p.id == id);
+    // const postData = postDataRaw
+    // const id = this.$route.params.id;
+    // console.log('Post ID:', id);  // Verifica que la ID se captura bien
+    // console.log(postData)
+    // this.post = postData.find((p) => p.id == id);
 
-    if (!this.post) {
-      console.error("Post no encontrado.");
-      return;
-    }
+    // if (!this.post) {
+    //   console.error("Post no encontrado.");
+    //   return;
+    // }
+
+
   }
 };
 </script>

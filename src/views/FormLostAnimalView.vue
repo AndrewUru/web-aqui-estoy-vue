@@ -46,27 +46,33 @@
 </template>
 
 <script>
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../firebase';
+
 export default {
   data() {
     return {
       formData: {
-        name: '',
-        date: '',
-        time: '',
-        country: '',
-        city: '',
-        street: '',
-        number: '',
-        email: '',
-        description: '',
+        name: 'Test',
+        date: '2025-01-16',
+        time: '11:00',
+        country: 'España',
+        city: 'Madrid',
+        street: 'Crta. Loeches',
+        number: '44',
+        email: 'test@mail.com',
+        description: 'Description de lo que pasa',
         file: null
       }
     }
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       // TODO: Implementar lógica para enviar el formulario
       console.log(this.formData)
+
+      const result = await addDoc(collection(db, 'lost-animals'), this.formData)
+      console.log("result", result.id)
     },
     onFileChange(event) {
       this.formData.file = event.target.files[0]

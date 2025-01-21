@@ -17,8 +17,9 @@
 </template>
 
 <script>
+import { collection, getDocs, query } from "firebase/firestore";
 import LostCard from "../components/elements/LostCardElement.vue";
-import lostAnimals from "../data/lostanimals.json";
+import { db } from "../../firebase";
 
 export default {
   components: {
@@ -26,9 +27,27 @@ export default {
   },
   data() {
     return {
-      lostAnimals,
+      lostAnimals: []
     };
   },
+  firestore() {
+    return {
+      lostAnimals: collection(db, 'lost-animals')
+    }
+  },
+  async mounted() {
+    const q = query(collection(db, "lost-animals"));
+    const querySnapshot = await getDocs(q);
+
+    const values = querySnapshot.docs.map((doc) => {
+      return {
+        id: doc.id,
+        ...doc.data()
+      };
+    });
+
+    this.lostAnimals = values;
+  }
 };
 </script>
 

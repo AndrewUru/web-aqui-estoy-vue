@@ -1,11 +1,6 @@
 <template>
   <div>
 
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>404 - ¡Aquí Estoy!</title>
-    </head>
     <div class="svg-container">
       <svg class="animated" id="freepik_stories-404-error-with-a-cute-animal" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500" version="1.1"

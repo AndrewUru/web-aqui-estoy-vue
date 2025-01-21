@@ -1,7 +1,7 @@
 <template>
   <div class="lostanimal-card">
     <div class="head-card">
-      <h2>{{ lostanimal.nameAgePet }}</h2>
+      <h2>{{ lostanimal.name }}</h2>
       <button>
         <Phone />
       </button>
@@ -10,11 +10,11 @@
     <div class="footer-card">
       <div class="footer-container clock">
         <img src="/icons/ClockIcon.svg" alt="Clock Icon" />
-        <p>{{ lostanimal.lostAddress }}</p>
+        <p>{{ lostanimal.street }}</p>
       </div>
       <div class="footer-container bottom">
         <div class="flag"><img src="/icons/ClockIcon.svg" alt="Clock Icon" />
-          <p>{{ lostanimal.lastTimeSeen }}</p>
+          <p>{{ lostanimal.date }} {{ lostanimal.time }}</p>
         </div>
         <div class="chat">
           <router-link :to="`/post/${lostanimal.id}`" class="lostanimal-card">
