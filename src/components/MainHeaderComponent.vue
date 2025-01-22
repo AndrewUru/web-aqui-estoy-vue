@@ -1,6 +1,44 @@
-<script setup>
+<script>
+
 import { RouterLink } from 'vue-router';
-import { onAuthStateChanged} from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from '../firebase.js';
+
+
+export default {
+  name: 'HeaderComponent',
+  components: {
+    RouterLink,
+  },
+  data() {
+    return {
+      isLogin: false,
+      currentUser: {}
+    }
+  },
+  beforeMount() {
+    console.log("Me subscribo a ver quien entró");
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("Usuario autenticado", user.uid);
+        this.currentUser = user;
+        this.isLogin = true;
+      }else{
+        console.log("Nos quedamos solitos");
+      }
+    })
+    console.log("Ya me subscribí");
+  },
+  methods: {
+    logout() {
+       signOut(auth)
+       console.log("adiós, pero no se sabe cuando te vas");
+      }
+  }
+
+
+}
+
 </script>
 
 <template>
@@ -17,9 +55,14 @@ import { onAuthStateChanged} from 'firebase/auth';
 
     <nav class="header-right">
       <RouterLink to="/form-lost-animal">Crear publicación</RouterLink>
-      isLogin ?<RouterLink class="button-login" to="/login">Acceder</RouterLink>
-      <RouterLink class="button-register" to="/register">Registrarse</RouterLink>
-      :<RouterLink class="button-profile" to="/profile"><h1>¡Hola, <!--{{auth.currentUser.displayName}}-->!</h1></RouterLink>
+
+      <RouterLink v-if="!isLogin" class="button-auth" to="/login">Acceder</RouterLink>
+      <RouterLink v-if="!isLogin" class="button-auth" to="/register">Registrarse</RouterLink>
+
+      <RouterLink v-if="isLogin" class="button-profile" to="/profile">
+        <h1 v-if="isLogin">¡Hola, {{ currentUser.email }}!</h1>
+      </RouterLink>
+      <button v-if="isLogin" @click="logout" class="button-auth logout">Cerrar Sesión</button>
     </nav>
 
     <button class="menu-toggle" aria-label="Abrir menú">
@@ -83,17 +126,19 @@ import { onAuthStateChanged} from 'firebase/auth';
 }
 
 
-.button-login,
-.button-register {
+.button-auth {
   display: flex;
   border-radius: 5px;
   color: var(--color-azul-oscuro);
   background-color: var(--color-azul-claro);
-  height: 30px;
-  width: 90px;
+  padding:10px;
   justify-content: center;
   align-items: center;
   filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
+}
+
+.logout{
+  background-color: red;
 }
 
 .button-register {

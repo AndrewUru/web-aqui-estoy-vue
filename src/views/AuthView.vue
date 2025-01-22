@@ -8,7 +8,7 @@
       </h2>
     </div>
     <div class="right-side">
-      <AuthForm :isLogin="isLogin" @login="login" @register="register"/>
+      <AuthForm :isLogin="isLogin" @login="login" @register="register" />
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@
 <script>
 import AuthForm from '@/components/AuthFormComponent.vue';
 
-import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase.js';
 
 export default {
@@ -25,45 +25,58 @@ export default {
   components: {
     AuthForm,
   },
-    data() {
-        return {
-            isLogin:false,
-        }
-    },
-    methods: {
-        async login(login) {
-            try {
-                console.log(login.email, login.password)
-                const userCredential = await signInWithEmailAndPassword(auth, login.email, login.password)
-                console.log(userCredential);
-
-               console.log(auth.currentUser);
-
-            } catch (Error) {
-                console.log(Error);
-            }
-        }
-    },
-    mounted() {
-        this.isLogin = this.$route.name === 'login';
-
-        onAuthStateChanged(auth, (user) => {
-            console.log(user)
-            if (user) {
-                console.log("Usuario autenticado", user.uid)
-                this.$router.push({ name: 'home' })
-            } else {
-                console.log("Usuario no autenticado")
-            }
-            console.log("auth", auth.currentUser)
-        })
-    },
-    watch:{
-        $route(to){
-            this.isLogin = to.name === 'login';
-           
-        }
+  data() {
+    return {
+      isLogin: false,
     }
+  },
+  methods: {
+    async login(login) {
+      try {
+        console.log(login.email, login.password)
+        const userCredential = await signInWithEmailAndPassword(auth, login.email, login.password)
+        console.log(userCredential);
+
+        console.log(auth.currentUser);
+
+      } catch (Error) {
+        console.log(Error);
+      }
+    },
+    async register(login) {
+      try {
+        console.log(login.email, login.password)
+        const userCredential = await createUserWithEmailAndPassword(auth, login.email, login.password)
+        
+        console.log(userCredential);
+
+        console.log(auth.currentUser);
+
+      } catch (Error) {
+        console.log(Error);
+      }
+    }
+  },
+  mounted() {
+    this.isLogin = this.$route.name === 'login';
+
+    onAuthStateChanged(auth, (user) => {
+      console.log(user)
+      if (user) {
+        console.log("Usuario autenticado", user.uid)
+        this.$router.push({ name: 'home' })
+      } else {
+        console.log("Usuario no autenticado")
+      }
+      console.log("auth", auth.currentUser)
+    })
+  },
+  watch: {
+    $route(to) {
+      this.isLogin = to.name === 'login';
+
+    }
+  }
 }
 </script>
 
@@ -118,4 +131,3 @@ export default {
   background-color: var(--color-azul-claro);
 }
 </style>
-
