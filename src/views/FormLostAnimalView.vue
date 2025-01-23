@@ -1,75 +1,84 @@
 <template>
   <div class="back-form">
-  <div class="form-container">
-    <h1>Formulario de búsqueda</h1>
-    <p class="text-top"><strong>Cuéntanos todos los detalles sobre tu familiar peludo ...</strong></p>
-    <form @submit.prevent="onSubmit">
-      <label for="name">Nombre:
-        <input type="text" name="name" id="name" v-model="formData.name" required>
-      </label>
-      <label class="label-group a">Última vez visto</label>
-      <label for="date"> <em>Fecha:</em>
-        <input type="date" name="date" id="date" v-model="formData.date" required>
-      </label>
-      <label for="time"><em>Hora:</em>
-        <input type="text" placeholder="Ejemplo 00:00" name="time" id="time" v-model="formData.time" required>
-      </label>
-      <label for="country">País:
-        <input type="text" name="country" id="country" v-model="formData.country" required>
-      </label>
-      <label for="city">Ciudad:
-        <input type="text" name="city" id="city" v-model="formData.city" required>
-      </label>
-      <label for="street">Calle:
-        <input type="text" name="street" id="street" v-model="formData.street" required>
-      </label>
-      <label class="label-group b">Contacto</label>
-      <label for="number"><em>Número de teléfono:</em>
-        <input type="text" name="number" id="number" v-model="formData.number" required>
-      </label>
-      <label for="email"><em>Email:</em>
-        <input type="text" name="email" id="email" v-model="formData.email" required>
-      </label>
-      
-        
-      <label for="description">Descripción:
-        <input type="text" name="description" id="description" v-model="formData.description">
-        <p class="text-form"><strong> Pequeña descripción sobre su compañera/o (datos que puedan distinguirle)</strong>
-        </p>
-      </label>
-      <label for="file">Foto:
-        <input class="select-file" id="button-file" type="file" name="file" @change="onFileChange">
-        <p class="text-form"><strong>Asegúrese de que se le distinga
-            lo mejor posible, una buena foto da más
-            oportunidades de encontrarle</strong></p>
-      </label>
-      <div class="reward-container">
-        <label>¿Quiere añadir una recompensa?</label>
-        <input type="checkbox" name="reward" id="reward" v-model="isChecked">
-        <div v-show="isChecked">
-          <input type="text" v-model="formData.reward">
+    <div class="form-container">
+      <h1>Formulario de búsqueda</h1>
+      <p class="text-top"><strong>Cuéntanos todos los detalles sobre tu familiar peludo ...</strong></p>
+      <form @submit.prevent="onSubmit">
+        <label for="name">Nombre:
+          <input type="text" name="name" id="name" v-model="formData.name" required>
+        </label>
+        <label class="label-group a">Última vez visto</label>
+        <label for="date"> <em>Fecha:</em>
+          <input type="date" name="date" id="date" v-model="formData.date" required>
+        </label>
+        <label for="time"><em>Hora:</em>
+          <input type="text" placeholder="Ejemplo 00:00" name="time" id="time" v-model="formData.time" required>
+        </label>
+        <label for="country">País:
+          <input type="text" name="country" id="country" v-model="formData.country" required>
+        </label>
+        <label for="city">Ciudad:
+          <input type="text" name="city" id="city" v-model="formData.city" required>
+        </label>
+        <label for="street">Calle:
+          <input type="text" name="street" id="street" v-model="formData.street" required>
+        </label>
+        <label class="label-group b">Contacto</label>
+        <label for="number"><em>Número de teléfono:</em>
+          <input type="text" name="number" id="number" v-model="formData.number" required>
+        </label>
+        <label for="email"><em>Email:</em>
+          <input type="text" name="email" id="email" v-model="formData.email" required>
+        </label>
+
+
+        <label for="description">Descripción:
+          <input type="text" name="description" id="description" v-model="formData.description">
+          <p class="text-form"><strong> Pequeña descripción sobre su compañera/o (datos que puedan
+              distinguirle)</strong>
+          </p>
+        </label>
+        <label for="file">Foto:
+          <input class="select-file" id="button-file" type="file" name="file" @change="onFileChange">
+          <p class="text-form"><strong>Asegúrese de que se le distinga
+              lo mejor posible, una buena foto da más
+              oportunidades de encontrarle</strong></p>
+        </label>
+        <div class="reward-container">
+          <label>¿Quiere añadir una recompensa?</label>
+          <input type="checkbox" name="reward" id="reward" v-model="isChecked">
+          <div v-show="isChecked">
+            <input type="text" v-model="formData.reward">
+          </div>
         </div>
-      </div>
-      
-      <div class="button-submit">
-        <button id="form-submit">Finalizar</button>
-      </div>
-      
-    </form>
+
+        <div class="button-submit">
+          <button id="form-submit">Finalizar</button>
+        </div>
+
+      </form>
+      <ModalComponent v-show="alert.title != ''" :title="alert.title" :content="alert.content"
+        @accept="acceptModal()" />
+
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase.js';
+import ModalComponent from '@/components/ModalComponent.vue';
 
 export default {
   data() {
     return {
-      isChecked : false,
+      isChecked: false,
+      alert: {
+        title: '',
+        content: '',
+      },
       formData: {
         name: 'pupa',
         date: '2025-01-01',
@@ -78,13 +87,16 @@ export default {
         city: 'Chocolate Fountain',
         street: 'Avenue Cripis',
         number: '1',
-        reward : '',
+        reward: '',
         email: 'e@e.com',
         description: 'ole',
         file: null,
-        uid : ''
+        uid: ''
       },
     }
+  },
+  components: {
+    ModalComponent
   },
   methods: {
     async onSubmit() {
@@ -94,9 +106,17 @@ export default {
 
       const result = await addDoc(collection(db, 'posts'), this.formData)
       console.log("result", result.id)
+      this.alert = {
+        title: "Todo ok!",
+        content: "Lo que quiera poner.."
+      }
     },
     onFileChange(event) {
       this.formData.file = event.target.files[0]
+    },
+
+    acceptModal() {
+      this.$router.push({ name: 'home' })
     },
     /*formWindow() {
       let newWindow = open("/", "example", "width=300,height=300");
@@ -106,19 +126,18 @@ export default {
       let html = `<div style="font-size:30px">Welcome!</div>`;
       newWindow.document.body.insertAdjacentHTML("afterbegin", html);
 };*/
-    
+
   },
-  mounted () {
-    const user = getAuth().currentUser;
-    //console.log(user.uid);
-    this.formData.uid = user.uid;
-    this.isLogin = this.$route.name === 'form-lost-animals';
+  mounted() {
+
+    // this.isLogin = this.$route.name === 'form-lost-animals';
 
     onAuthStateChanged(auth, (user) => {
       console.log(user)
       if (user) {
         console.log("Usuario autenticado", user.uid)
-        this.$router.push({ name: 'home' })
+        this.formData.uid = user.uid;
+        // this.$router.push({ name: 'home' })
       } else {
         console.log("Usuario no autenticado")
       }
@@ -132,14 +151,17 @@ export default {
 <style scoped>
 .back-form {
   background-color: var(--color-azul-claro);
-  padding-top : 20px;
+  padding-top: 20px;
+  padding-bottom: 60px;
 }
+
 .form-container {
-  margin : auto;
+  margin: auto;
   background-color: white;
   width: 80%;
   height: 90%;
   padding: 1%;
+  padding-bottom: 60px;
   font-family: Montserrat, sans-serif;
   display: grid;
   justify-items: center;
@@ -180,8 +202,9 @@ export default {
       margin-top: 10px;
     }
 
-    & .reward-container{
+    & .reward-container {
       margin-bottom: 10px;
+
       & input {
         margin-bottom: 10px;
       }
@@ -192,9 +215,10 @@ export default {
     }
   }
 
-  & .button-submit{
+  & .button-submit {
     display: flex;
     justify-content: center;
+
     & #form-submit {
       background-color: var(--color-azul-claro);
       font-family: Montserrat, sans-serif;
@@ -205,8 +229,10 @@ export default {
       padding: 10px;
       border-radius: 10px;
       width: 6rem;
+      transition: all 0.3s;
 
       &:hover {
+        background-color: #14466c;
         text-decoration: underline;
       }
     }
