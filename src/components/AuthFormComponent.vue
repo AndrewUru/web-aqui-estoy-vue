@@ -183,6 +183,10 @@ img {
   cursor: pointer;
   font-size: 16px;
   width: 100%;
+  &:hover{
+    transition : 0.75s;
+    box-shadow: 0 12px 16px 0 rgba(194, 194, 194, 0.24),0 17px 50px 0 rgba(192, 192, 192, 0.19);
+  }
 }
 
 .or-container {
@@ -226,10 +230,12 @@ img {
 
 .input-field {
   background: transparent;
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 10px;
   padding: 10px 10px;
   width: 500px;
+  color: white;
+  outline : white;
 }
 
 .form-links {

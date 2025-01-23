@@ -88,6 +88,9 @@ export default {
   },
   components: {
     CommentsSectionElement
+  },
+  methods : {
+    
   }
 }
 </script>

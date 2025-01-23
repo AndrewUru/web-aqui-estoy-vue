@@ -1,21 +1,15 @@
 <script>
-import comments from '@/data/post.json'
 import { db } from '@/firebase';
 import { addDoc, collection, doc } from 'firebase/firestore';
 import ModalComponent from '../ModalComponent.vue';
 
 export default {
-  props: {
-    currentPostId: {
-      type: String
-    },
-    postId: {
-      type: String
-    }
-  },
+  props:
+    ["comments",
+      "postId"],
+
   data() {
     return {
-      comments: comments,
       formData: {
         name: '',
         comment: ''
@@ -56,7 +50,8 @@ export default {
     },
     acceptModal() {
       this.alert.title = ""
-    }
+    },
+
   },
 }
 </script>
@@ -64,15 +59,11 @@ export default {
 <template>
   <ModalComponent v-show="alert.title != ''" :title="alert.title" :content="alert.content" @accept="acceptModal()" />
   <div class="comment-section">
-    {comments && comments.length > 0 ? ( comments.map((comment: { name: string; text: string }) => {
-    const backgroundColor = generateColorFromName(comment.name); return (
-    <div class="comment" :style="{ backgroundColor: backgroundColor }">
-      <p class="comment-name">{comment.name}:</p>
-      <p>{comment.text}</p>
+
+    <div v-for="comment in comments" :key="comment.id" class="comment" :style="{ backgroundColor: backgroundColor }">
+      <p class="comment-name">{{ comment.name }}:</p>
+      <p>{{ comment.comment }}</p>
     </div>
-    ); }) ) : (
-    <p>No hay comentarios aún.</p>
-    )}
 
     <div class="add-comment">
       <input type="text" v-model="formData.name" placeholder="Escribe aquí tu nombre..." />

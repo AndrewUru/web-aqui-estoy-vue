@@ -1,10 +1,10 @@
 <template>
   <div class="split-screen">
     <div class="left-side">
-      <h1>Tu comunidad, su camino a casa.</h1>
+      <h1>Tu comunidad, su camino a casa</h1>
       <h2>
         Conecta, busca, y encuentra a tu mascota perdida mientras construimos
-        una comunidad solidaria.
+        una comunidad solidaria
       </h2>
     </div>
     <div class="right-side">
@@ -81,7 +81,6 @@ export default {
 </script>
 
 <style scoped>
-/* Estilos globales de la vista */
 .split-screen {
   display: flex;
   height: 100vh;
@@ -100,7 +99,7 @@ export default {
 
 .left-side {
   background-color: var(--color-celeste);
-  color: var(--color-azul-oscu ro);
+  color: var(--color-azul-oscuro);
   text-align: center;
   display: flex;
   flex-direction: column;

@@ -58,7 +58,7 @@
 
       </form>
       <ModalComponent v-show="alert.title != ''" :title="alert.title" :content="alert.content"
-        @accept="acceptModal()" />
+      @accept="acceptModal()" />
 
     </div>
   </div>

@@ -2,6 +2,7 @@
   <div>
     <Header />
     <main>
+      <button @click="getDataGrandchild"></button>
       <div v-if="post" class="lost-animal-post">
         <PostComponent :post="post" />
       </div>
@@ -13,7 +14,7 @@
 <script>
 import PostComponent from "@/components/PostComponent.vue";
 import { db } from "@/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, collection, query, onSnapshot } from "firebase/firestore";
 
 export default {
   name: 'PostViewPage',
@@ -37,6 +38,17 @@ export default {
 
     // obtengo aqui los comentarios de este POST
     // this.post.comments = [estos comentarios de firebase]
+    const docRefComment = collection(doc(db, 'posts', this.$route.params.id), 'comments');
+    console.log("¿que es esto? ==>   " + docRefComment);
+    const q = query(docRefComment);
+    const print = onSnapshot(q, (querySnapshot) => {
+      const comments = [];
+      querySnapshot.forEach((doc) => {
+        comments.push({ id: doc.id, ...doc.data() });
+      });
+      this.post.comments = comments;
+    });
+
 
   },
   components: {
@@ -46,6 +58,9 @@ export default {
     return {
       post: null,
     };
+  },
+  methods: {
+
   },
   created() {
 
@@ -67,4 +82,9 @@ export default {
 
 <style scoped>
 @import "../../assets/base.css";
+
+button {
+  height: 40px;
+  width: 40px;
+}
 </style>

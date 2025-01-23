@@ -35,8 +35,6 @@ export default {
        console.log("adiós, pero no se sabe cuando te vas");
       }
   }
-
-
 }
 
 </script>
@@ -44,9 +42,11 @@ export default {
 <template>
   <div class="nav-container">
     <nav class="header-left">
-      <p>¡AQUÍ ESTOY!</p>
+      
       <div class="nav-links">
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/">
+          <p>¡AQUÍ ESTOY!</p>
+        </RouterLink>
         <RouterLink to="/lost-animals">En búsqueda</RouterLink>
         <RouterLink to="/found-animals">Encontrados</RouterLink>
         <RouterLink to="/about">Sobre nosotras ...</RouterLink>
@@ -54,15 +54,13 @@ export default {
     </nav>
 
     <nav class="header-right">
-      <RouterLink v-if="isLogin" to="/form-lost-animal">Crear publicación</RouterLink>
-
       <RouterLink v-if="!isLogin" class="button-auth" to="/login">Acceder</RouterLink>
       <RouterLink v-if="!isLogin" class="button-auth" to="/register">Registrarse</RouterLink>
-
-      <!--<RouterLink v-if="isLogin" class="button-profile" to="/profile">
-        <h1 v-if="isLogin">¡Hola, {{ currentUser.email }}!</h1>
-      </RouterLink>-->
-      <button v-if="isLogin" @click="logout" class="button-auth logout">Cerrar Sesión</button>
+      <RouterLink v-if="isLogin" class="button-profile" to="/profile">
+        <h2 v-if="isLogin">¡Hola, {{ currentUser.email }}!</h2>
+      </RouterLink>
+      <RouterLink v-if="isLogin" to="/form-lost-animal" class="button-auth">Crear publicación</RouterLink>
+      <RouterLink v-if="isLogin" @click="logout" class="button-auth logout" to="/home">Cerrar Sesión</RouterLink>
     </nav>
 
     <button class="menu-toggle" aria-label="Abrir menú">
@@ -134,13 +132,14 @@ export default {
   padding:10px;
   justify-content: center;
   align-items: center;
-  filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
+  filter: drop-shadow(0 0 0.2rem rgb(16, 83, 89));
 }
 
 .logout{
-  background-color: red;
+  font-family: Montserrat, sans-serif;
+  background-color: #731212;
+  filter: none;
 }
-
 .button-register {
   width: 110px;
   color: var(--color-azul-oscuro);
@@ -193,6 +192,10 @@ export default {
     text-align: center;
   }
 }
+
+.button-profile h2{
+      font-size: 16px;
+  }
 
 /* Responsivo para pantallas medianas */
 @media (max-width: 1024px) {
