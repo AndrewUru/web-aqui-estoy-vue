@@ -27,12 +27,16 @@ export default {
       console.log("DOC ID", this.$route.params.id)
       this.post = {
         id: this.$route.params.id,
-        ...docSnap.data()
+        ...docSnap.data(),
+        comments: [] // si lo consigue!
       }
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
+
+    // obtengo aqui los comentarios de este POST
+    // this.post.comments = [estos comentarios de firebase]
 
   },
   components: {
