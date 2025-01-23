@@ -18,7 +18,7 @@
       </div>
       <div class="comments-section">
         <h3>Comentarios:</h3>
-         <CommentsSection :comments="post.comments" />
+        <CommentsSectionElement :comments="post.comments" :postId="post.id" />
       </div>
     </div>
   </main>
@@ -75,7 +75,8 @@ main {
 </style>
 
 <script>
- //import { CommentsSection } from "../elements";
+import CommentsSectionElement from './elements/CommentsSectionElement.vue';
+
 
 export default {
   name: 'PostComponent',
@@ -86,7 +87,7 @@ export default {
     }
   },
   components: {
-     //CommentsSection
+    CommentsSectionElement
   }
 }
 </script>

@@ -1,11 +1,36 @@
 <script>
 import comments from '@/data/post.json'
+import { db } from '@/firebase';
+import { addDoc, collection, doc } from 'firebase/firestore';
+import ModalComponent from '../ModalComponent.vue';
 
 export default {
+  props: {
+    currentPostId: {
+      type: String
+    },
+    postId: {
+      type: String
+    }
+  },
   data() {
     return {
       comments: comments,
+      formData: {
+        name: '',
+        comment: ''
+      },
+      alert: {
+        title: '',
+        content: ''
+      }
     }
+  },
+  components: {
+    ModalComponent
+  },
+  mounted() {
+    //console.log("aqui", this.postId)
   },
   methods: {
     generateColorFromName: function (name) {
@@ -15,11 +40,29 @@ export default {
       const lightness = 85 + Math.random() * 10
       return `hsl(${hue}, ${saturation}%, ${lightness}%)`
     },
+    async onSubmitComment() {
+      console.log(this.formData)
+
+      const commentsCollection = collection(doc(db, 'posts', this.postId), 'comments');
+
+      const result = await addDoc(commentsCollection, this.formData)
+      // console.log("result", result.id)
+      if (result?.id) {
+        this.alert = {
+          title: "Comentario publicado ok!",
+          content: "Lo que quiera poner.."
+        }
+      }
+    },
+    acceptModal() {
+      this.alert.title = ""
+    }
   },
 }
 </script>
 
 <template>
+  <ModalComponent v-show="alert.title != ''" :title="alert.title" :content="alert.content" @accept="acceptModal()" />
   <div class="comment-section">
     {comments && comments.length > 0 ? ( comments.map((comment: { name: string; text: string }) => {
     const backgroundColor = generateColorFromName(comment.name); return (
@@ -32,9 +75,9 @@ export default {
     )}
 
     <div class="add-comment">
-      <input type="text" placeholder="Escribe aquí tu nombre..." />
-      <textarea rows="3" placeholder="Escribe aquí tu comentario..."></textarea>
-      <button>Enviar</button>
+      <input type="text" v-model="formData.name" placeholder="Escribe aquí tu nombre..." />
+      <textarea rows="3" v-model="formData.comment" placeholder="Escribe aquí tu comentario..."></textarea>
+      <button @click="onSubmitComment()">Enviar</button>
     </div>
   </div>
 </template>

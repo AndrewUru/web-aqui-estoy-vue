@@ -12,9 +12,8 @@
 
 <script>
 import PostComponent from "@/components/PostComponent.vue";
+import { db } from "@/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-// import postDataRaw from "../../data/post.json";
 
 export default {
   name: 'PostViewPage',
@@ -22,14 +21,19 @@ export default {
 
     const docRef = doc(db, "posts", `${this.$route.params.id}`);
     const docSnap = await getDoc(docRef);
-    console.log(`${this.$route.params.id}`);
+
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
-      this.post = docSnap.data()
+      console.log("DOC ID", this.$route.params.id)
+      this.post = {
+        id: this.$route.params.id,
+        ...docSnap.data()
+      }
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
+
   },
   components: {
     PostComponent
@@ -51,6 +55,7 @@ export default {
     //   console.error("Post no encontrado.");
     //   return;
     // }
+
 
   }
 };
