@@ -54,14 +54,14 @@ export default {
     </nav>
 
     <nav class="header-right">
-      <RouterLink to="/form-lost-animal">Crear publicación</RouterLink>
+      <RouterLink v-if="isLogin" to="/form-lost-animal">Crear publicación</RouterLink>
 
       <RouterLink v-if="!isLogin" class="button-auth" to="/login">Acceder</RouterLink>
       <RouterLink v-if="!isLogin" class="button-auth" to="/register">Registrarse</RouterLink>
 
-      <RouterLink v-if="isLogin" class="button-profile" to="/profile">
+      <!--<RouterLink v-if="isLogin" class="button-profile" to="/profile">
         <h1 v-if="isLogin">¡Hola, {{ currentUser.email }}!</h1>
-      </RouterLink>
+      </RouterLink>-->
       <button v-if="isLogin" @click="logout" class="button-auth logout">Cerrar Sesión</button>
     </nav>
 

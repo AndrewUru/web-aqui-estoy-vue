@@ -46,7 +46,9 @@
       <div class="reward-container">
         <label>¿Quiere añadir una recompensa?</label>
         <input type="checkbox" name="reward" id="reward" v-model="isChecked">
-        <input type="text" v-show="isChecked">
+        <div v-show="isChecked">
+          <input type="text" v-model="formData.reward">
+        </div>
       </div>
       
       <div class="button-submit">
@@ -61,30 +63,34 @@
 <script>
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase.js';
 
 export default {
   data() {
     return {
-      formData: {
-        name: 'Test',
-        date: '2025-01-16',
-        time: '11:00',
-        country: 'España',
-        city: '',
-        street: 'Crta. Loeches',
-        number: '44',
-        reward : '',
-        email: 'test@mail.com',
-        description: 'Description de lo que pasa',
-        file: null
-      },
       isChecked : false,
+      formData: {
+        name: 'pupa',
+        date: '2025-01-01',
+        time: '01:01',
+        country: 'Candyland',
+        city: 'Chocolate Fountain',
+        street: 'Avenue Cripis',
+        number: '1',
+        reward : '',
+        email: 'e@e.com',
+        description: 'ole',
+        file: null,
+        uid : ''
+      },
     }
   },
   methods: {
     async onSubmit() {
       // TODO: Implementar lógica para enviar el formulario
       console.log(this.formData)
+      console.log("valor de isChecked: " + this.isChecked);
 
       const result = await addDoc(collection(db, 'posts'), this.formData)
       console.log("result", result.id)
@@ -92,6 +98,33 @@ export default {
     onFileChange(event) {
       this.formData.file = event.target.files[0]
     },
+    /*formWindow() {
+      let newWindow = open("/", "example", "width=300,height=300");
+      newWindow.focus();
+      alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
+      newWindow.onload = function() {
+      let html = `<div style="font-size:30px">Welcome!</div>`;
+      newWindow.document.body.insertAdjacentHTML("afterbegin", html);
+};*/
+    
+  },
+  mounted () {
+    const user = getAuth().currentUser;
+    //console.log(user.uid);
+    this.formData.uid = user.uid;
+    this.isLogin = this.$route.name === 'form-lost-animals';
+
+    onAuthStateChanged(auth, (user) => {
+      console.log(user)
+      if (user) {
+        console.log("Usuario autenticado", user.uid)
+        this.$router.push({ name: 'home' })
+      } else {
+        console.log("Usuario no autenticado")
+      }
+      console.log("auth", auth.currentUser)
+    })
+
   }
 }
 </script>
