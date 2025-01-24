@@ -11,18 +11,19 @@
         <div class="separator-line"></div>
       </div>
       <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
-      <input type="email" v-model="login.email" required class="input-field" />
+      <input type="email" v-model="login.email" :class="{ error: hasError }" required class="input-field" />
       <label class="form-label password-label">
         Contraseña
         <button type="button" class="password-toggle">
           <img src="/icons/eye-tracking.svg" alt="Eye tracking Icon" />
         </button>
       </label>
-      <input type="password" v-model="login.password" required class="input-field" />
+      <input type="password" v-model="login.password" :class="{ error: hasError }" required class="input-field" />
       <div class="form-links password">
         <a href="#">¿Olvidaste tu contraseña?</a>
       </div>
       <button type="submit" @click="$emit('login', login)" class="login-button">Acceder</button>
+      <p v-if="hasError" class="error-message">{{ errorMessage }}</p>
       <div class="form-links signin">
         <a href="register">¿Aún no tienes cuenta? Regístrate</a>
       </div>
@@ -47,12 +48,14 @@
         </button>
       </label>
       <input type="password" v-model="login.password" required class="input-field" />
+
       <button type="submit" @click="$emit('register', login)" class="login-button">Registrarme</button>
     </form>
   </div>
 </template>
 
 <script>
+
 export default {
   props: {
     isLogin: {
@@ -71,13 +74,14 @@ export default {
     }
   },
   data() {
-        return {
-            login: {
-              email: "",
-              password: "",
-            }
-        }
-    },
+    return {
+      login: {
+        email: "",
+        password: "",
+      },
+      // Mensaje de error
+    }
+  },
 }
 </script>
 
@@ -183,9 +187,10 @@ img {
   cursor: pointer;
   font-size: 16px;
   width: 100%;
-  &:hover{
-    transition : 0.75s;
-    box-shadow: 0 12px 16px 0 rgba(194, 194, 194, 0.24),0 17px 50px 0 rgba(192, 192, 192, 0.19);
+
+  &:hover {
+    transition: 0.75s;
+    box-shadow: 0 12px 16px 0 rgba(194, 194, 194, 0.24), 0 17px 50px 0 rgba(192, 192, 192, 0.19);
   }
 }
 
@@ -235,7 +240,7 @@ img {
   padding: 10px 10px;
   width: 500px;
   color: white;
-  outline : white;
+  outline: white;
 }
 
 .form-links {

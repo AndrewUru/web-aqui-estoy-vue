@@ -23,7 +23,7 @@ export default {
         console.log("Usuario autenticado", user.uid);
         this.currentUser = user;
         this.isLogin = true;
-      }else{
+      } else {
         console.log("Nos quedamos solitos");
       }
     })
@@ -31,9 +31,11 @@ export default {
   },
   methods: {
     logout() {
-       signOut(auth)
-       console.log("adiós, pero no se sabe cuando te vas");
-      }
+      signOut(auth)
+      console.log("adiós, pero no se sabe cuando te vas");
+      this.isLogin = false;
+      this.$router.push({ name: 'home' });
+    }
   }
 }
 
@@ -42,7 +44,7 @@ export default {
 <template>
   <div class="nav-container">
     <nav class="header-left">
-      
+
       <div class="nav-links">
         <RouterLink to="/">
           <p>¡AQUÍ ESTOY!</p>
@@ -129,17 +131,18 @@ export default {
   border-radius: 5px;
   color: var(--color-azul-oscuro);
   background-color: var(--color-azul-claro);
-  padding:10px;
+  padding: 10px;
   justify-content: center;
   align-items: center;
   filter: drop-shadow(0 0 0.2rem rgb(16, 83, 89));
 }
 
-.logout{
+.logout {
   font-family: Montserrat, sans-serif;
   background-color: #731212;
   filter: none;
 }
+
 .button-register {
   width: 110px;
   color: var(--color-azul-oscuro);
@@ -193,9 +196,9 @@ export default {
   }
 }
 
-.button-profile h2{
-      font-size: 16px;
-  }
+.button-profile h2 {
+  font-size: 16px;
+}
 
 /* Responsivo para pantallas medianas */
 @media (max-width: 1024px) {

@@ -9,15 +9,16 @@
     </div>
     <div class="right-side">
       <AuthForm :isLogin="isLogin" @login="login" @register="register" />
+
     </div>
   </div>
 </template>
 
 <script>
 import AuthForm from '@/components/AuthFormComponent.vue';
-
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase.js';
+import { toast } from 'vue3-toastify';
 
 export default {
 
@@ -41,19 +42,27 @@ export default {
 
       } catch (Error) {
         console.log(Error);
+        toast("Contraseña o correo incorrecto", {
+          "theme": "colored",
+          "type": "error",
+          "transition": "flip",
+          "dangerouslyHTMLString": true
+        })
+
       }
     },
     async register(login) {
       try {
         console.log(login.email, login.password)
         const userCredential = await createUserWithEmailAndPassword(auth, login.email, login.password)
-        
+
         console.log(userCredential);
 
         console.log(auth.currentUser);
 
       } catch (Error) {
         console.log(Error);
+
       }
     }
   },
