@@ -39,7 +39,7 @@
           </p>
         </label>
         <label for="file">Foto:
-          <input class="select-file" id="button-file" type="file" name="file" @change="onFileChange">
+          <input class="select-file" id="button-file" type="file" name="file" accept="image/*" @change="onFileChange">
           <p class="text-form"><strong>Asegúrese de que se le distinga
               lo mejor posible, una buena foto da más
               oportunidades de encontrarle</strong></p>
@@ -58,7 +58,7 @@
 
       </form>
       <ModalComponent v-show="alert.title != ''" :title="alert.title" :content="alert.content"
-      @accept="acceptModal()" />
+        @accept="acceptModal()" />
 
     </div>
   </div>
@@ -80,7 +80,7 @@ export default {
         content: '',
       },
       formData: {
-        name: 'pupa',
+        name: 'pepe el chola',
         date: '2025-01-01',
         time: '01:01',
         country: 'Candyland',
@@ -90,7 +90,7 @@ export default {
         reward: '',
         email: 'e@e.com',
         description: 'ole',
-        file: null,
+        URLImage: null,
         uid: ''
       },
     }
@@ -111,8 +111,32 @@ export default {
         content: "Lo que quiera poner.."
       }
     },
-    onFileChange(event) {
-      this.formData.file = event.target.files[0]
+    async onFileChange(event) {
+      const file = event.target.files[0];
+      const formData = new FormData();
+
+
+      const cloudName = 'dqajwbhnv';
+      const uploadPreset = 'aqui_estoy';
+
+      formData.append('file', file);
+      formData.append('upload_preset', uploadPreset);
+
+      try {
+        const response = await fetch(
+          `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+          {
+            method: 'POST',
+            body: formData
+          }
+        )
+
+        const result = await response.json();
+        this.formData.URLImage = result.secure_url;
+        console.log("URL de la imagen subida", result.secure_url);
+      } catch (error) {
+        console.error('Upload failed', error)
+      }
     },
 
     acceptModal() {

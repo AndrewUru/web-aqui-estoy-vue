@@ -4,10 +4,7 @@ import { addDoc, collection, doc } from 'firebase/firestore';
 import ModalComponent from '../ModalComponent.vue';
 
 export default {
-  props:
-    ["comments",
-      "postId"],
-
+  props: ["comments", "postId"],
   data() {
     return {
       formData: {
@@ -18,49 +15,58 @@ export default {
         title: '',
         content: ''
       }
-    }
+    };
   },
   components: {
     ModalComponent
   },
-  mounted() {
-    //console.log("aqui", this.postId)
-  },
   methods: {
-    generateColorFromName: function (name) {
-      const hash = Array.from(name).reduce((acc, char) => acc + char.charCodeAt(0), 0)
-      const hue = hash % 360
-      const saturation = 70 + Math.random() * 10
-      const lightness = 85 + Math.random() * 10
-      return `hsl(${hue}, ${saturation}%, ${lightness}%)`
+    generateColorFromName(name) {
+      const hash = Array.from(name).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      const hue = hash % 360;
+      const saturation = 70;
+      const lightness = 85;
+      return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     },
     async onSubmitComment() {
-      console.log(this.formData)
-
       const commentsCollection = collection(doc(db, 'posts', this.postId), 'comments');
 
-      const result = await addDoc(commentsCollection, this.formData)
-      // console.log("result", result.id)
+      const result = await addDoc(commentsCollection, this.formData);
       if (result?.id) {
         this.alert = {
           title: "Comentario publicado ok!",
           content: "Lo que quiera poner.."
-        }
+        };
       }
     },
     acceptModal() {
-      this.alert.title = ""
+      this.alert.title = "";
     },
-
-  },
-}
+    getCommentStyle(comment) {
+      return {
+        backgroundColor: this.generateColorFromName(comment.name),
+      };
+    }
+  }
+};
 </script>
 
+
 <template>
-  <ModalComponent v-show="alert.title != ''" :title="alert.title" :content="alert.content" @accept="acceptModal()" />
+  <ModalComponent
+    v-show="alert.title != ''"
+    :title="alert.title"
+    :content="alert.content"
+    @accept="acceptModal()"
+  />
   <div class="comment-section">
 
-    <div v-for="comment in comments" :key="comment.id" class="comment" :style="{ backgroundColor: backgroundColor }">
+    <div
+      v-for="comment in comments"
+      :key="comment.id"
+      class="comment"
+      :style="getCommentStyle(comment)"
+    >
       <p class="comment-name">{{ comment.name }}:</p>
       <p>{{ comment.comment }}</p>
     </div>
@@ -72,6 +78,7 @@ export default {
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .comments-section {

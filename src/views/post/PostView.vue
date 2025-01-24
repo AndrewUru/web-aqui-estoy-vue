@@ -41,7 +41,7 @@ export default {
     const docRefComment = collection(doc(db, 'posts', this.$route.params.id), 'comments');
     console.log("¿que es esto? ==>   " + docRefComment);
     const q = query(docRefComment);
-    const print = onSnapshot(q, (querySnapshot) => {
+    onSnapshot(q, (querySnapshot) => {
       const comments = [];
       querySnapshot.forEach((doc) => {
         comments.push({ id: doc.id, ...doc.data() });

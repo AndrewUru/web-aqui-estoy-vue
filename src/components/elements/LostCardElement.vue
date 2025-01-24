@@ -6,7 +6,7 @@
         <Phone />
       </button>
     </div>
-    <img class="contain pet-img" :src="posts.image" alt="">
+    <img class="contain pet-img" :src="posts.URLImage" alt="">
     <div class="footer-card">
       <div class="footer-container clock">
         <img class="icon" src="@/assets/FlagWaving.svg" alt="Clock Icon" />
