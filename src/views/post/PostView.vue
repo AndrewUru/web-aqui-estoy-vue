@@ -2,7 +2,6 @@
   <div>
     <Header />
     <main>
-      <button @click="getDataGrandchild"></button>
       <div v-if="post" class="lost-animal-post">
         <PostComponent :post="post" />
       </div>

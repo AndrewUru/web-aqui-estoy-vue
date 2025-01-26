@@ -2,7 +2,7 @@
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-col">
-        <a href="#" class="footer-logo">
+        <a href="/" class="footer-logo">
           <img src="@/assets/logo.png" alt="¡Aquí Estoy!" />
           ¡Aquí Estoy!
         </a>
@@ -10,43 +10,32 @@
           Conéctate con otros para encontrar mascotas perdidas o ayudar a
           otros a encontrar las suyas. ¡Juntos podemos lograrlo!
         </p>
-        <div class="footer-social">
-          <a href="#" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" aria-label="Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
       </div>
 
       <div class="footer-col">
         <h3>Sobre nosotros</h3>
         <ul class="footer-links">
           <li><a href="/about">Quiénes somos</a></li>
-          <li><a href="#">Nuestros valores</a></li>
-          <li><a href="#">Historias de éxito</a></li>
+          <li><a href="/values">Nuestros valores</a></li>
+          <li><a href="/success-stories">Historias de éxito</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h3>Más información</h3>
         <ul class="footer-links">
-          <li><a href="#">Preguntas frecuentes</a></li>
-          <li><a href="#">Cómo funciona</a></li>
-          <li><a href="#">Blog</a></li>
+          <li><a href="/faq">Preguntas frecuentes</a></li>
+          <li><a href="/how-it-works">Cómo funciona</a></li>
+          <li><a href="/blog">Blog</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h3>Ayuda</h3>
         <ul class="footer-links">
-          <li><a href="#">Accesibilidad</a></li>
-          <li><a href="#">Privacidad</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="/accessibility">Accesibilidad</a></li>
+          <li><a href="/privacy">Privacidad</a></li>
+          <li><a href="/contact">Contacto</a></li>
         </ul>
       </div>
     </div>
@@ -57,7 +46,6 @@
     </div>
   </footer>
 </template>
-
 <style scoped>
 /***************************************************
        * Footer

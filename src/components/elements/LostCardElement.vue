@@ -14,7 +14,7 @@
       </div>
       <div class="footer-container bottom">
         <div class="flag"><img class="icon" src="@/assets/ClockIcon.svg" alt="Clock Icon" />
-          <p>{{ posts.date }} {{ posts.time }}</p>
+          <p>Perdido:{{ posts.date }} {{ posts.time }}</p>
         </div>
         <div class="chat">
           <router-link :to="`/post/${posts.id}`" class="lostanimal-card">
@@ -28,13 +28,13 @@
 
 <style scoped>
   .icon{
-    padding:5px;
-    height:25px;
-    width:25px;
+    padding-left:5px;
+    height:20px;
+    width:20px;
   }
 .lostanimal-card{
   filter: drop-shadow(0 0 0.1rem rgb(203, 213, 214));
-  margin : 30px;
+  margin: 0 60px 30px 60px;
   font-family: Montserrat, sans-serif;
   border-radius: 25px;
   display : flex;

@@ -4,10 +4,9 @@
       <h1>Sobre Nosotras</h1>
       <p>Conoce el proyecto y lo que hemos aprendido al hacerlo.</p>
     </div>
-
     <div class="about-content">
       <section class="project-info">
-        <h2>¿Qué es ¡Aquí estoy!?</h2>
+        <h2>🐾¿Qué es ¡Aquí estoy!?🐾</h2>
         <p>
           ¡Aquí estoy! es una aplicación creada con el objetivo de ayudar a reunir a los animales perdidos con sus
           dueños. Permite a los usuarios crear anuncios para buscar a sus mascotas perdidas, unirse a la búsqueda de
@@ -23,9 +22,8 @@
           </ul>
         </div>
       </section>
-
       <section class="team">
-        <h2>¿Quiénes Somos?</h2>
+        <h2>¿Quiénes somos?👩🏽‍💻👩🏻‍💻</h2>
         <p>
           Somos un grupo de apasionados por la tecnología y el bienestar animal. A lo largo de este proyecto, hemos
           aprendido cómo desarrollar una aplicación que no solo resuelve un problema real, sino que también fomenta el
@@ -37,33 +35,28 @@
           experiencia de usuario fluida.
         </p>
       </section>
-
       <section class="what-we-learned">
-        <h2>Lo que Hemos Aprendido</h2>
+        <h2>Lo que hemos aprendido 🧠</h2>
         <p>
           Durante el desarrollo de <b>¡Aquí estoy!</b>, hemos adquirido valiosas habilidades en:
         </p>
         <ul>
-          <li>Diseño de interfaces accesibles y atractivas.</li>
-          <li>Desarrollo web responsive con tecnologías modernas como Vue, JavaScript, html y CSS.</li>
-          <li>Trabajo colaborativo usando GitHub y Trello.</li>
-          <li>Implementación de un enfoque centrado en el usuario y la comunidad.</li>
+          <li>🎨 Diseño de interfaces accesibles y atractivas.</li>
+          <li>💻 Desarrollo web con tecnologías modernas como Vue, JavaScript, html y CSS.</li>
+          <li>👥 Trabajo colaborativo usando GitHub y Trello.</li>
+          <li>🏙️ Implementación de un enfoque centrado en el usuario y la comunidad.</li>
         </ul>
       </section>
     </div>
-
     <div class="about-footer">
-      <p>Gracias por ser parte de esta comunidad. Juntos podemos hacer una gran diferencia.</p>
+      <p>Gracias por ser parte de esta comunidad.<br> Juntos podemos hacer una gran diferencia.</p>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "AboutPage",
-  components: {
-  }
 };
 </script>
 
@@ -79,19 +72,10 @@ export default {
   padding: 50px;
 }
 
-.about-header {
+.about-header,
+.about-footer {
   font-family: "Luckiest Guy", cursive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
-}
-
-.about-header img {
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
+  text-align: center;
 }
 
 .about-header h1 {
@@ -99,7 +83,8 @@ export default {
   color: var(--color-azul-oscuro);
 }
 
-.about-header p {
+.about-header p,
+.about-footer p {
   font-size: 18px;
   color: var(--color-azul-claro);
 }
@@ -108,46 +93,33 @@ export default {
   margin-top: 20px;
 }
 
-.project-info,
-.team,
-.what-we-learned {
+section {
   margin-bottom: 40px;
 }
 
-.project-info h2,
-.team h2,
-.what-we-learned h2 {
-  font-size: 36px;
+h2 {
+  font-size: 25px;
   color: var(--color-azul-oscuro);
   margin-bottom: 20px;
 }
 
-.project-info ul {
+ul {
   list-style-type: none;
   padding-left: 0;
 }
 
-.project-info ul li {
-  font-size: 20px;
+li {
+  font-size: 15px;
   margin: 5px 0;
 }
 
-.team p,
-.what-we-learned p {
+.features {
   font-size: 18px;
+}
+
+p {
+  font-size: 15px;
   line-height: 1.6;
 }
-
-.about-footer {
-  font-family: "Luckiest Guy", cursive;
-  padding: 20px;
-  text-align: center;
-  border-radius: 20px;
-  font-size: 50px;
-}
-
-.about-footer h3 {
-  font-size: 32px;
-  color: var(--color-celeste);
-}
 </style>
+

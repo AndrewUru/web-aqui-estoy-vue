@@ -1,13 +1,104 @@
 <template>
-  <div>
+  <div class="container-foundanimals">
+    <h1>¡Están de vuelta en su hogar!</h1>
+    <div class="select-cities">
+      <select v-model="city" name="city" id="city">
+        <option value="laspalmas">Las Palmas de G.C.</option>
+        <option value="Telde">Telde</option>
+        <option value="Sanmateo">San Mateo</option>
+        <option value="maspalomas">Maspalomas</option>
+      </select>
+    </div>
+    <div class="found-animal-cards">
+      <FoundCard v-for="post in posts" :posts="post" :key="post.id" />
+    </div>
   </div>
 </template>
 
 <script>
-
+import { collection, getDocs, query, where } from "firebase/firestore";
+import FoundCard from "../components/elements/FoundCardElement.vue";
+import { db } from "../firebase";
 
 export default {
+  name: "FoundAnimalsView",
   components: {
+    FoundCard,
+  },
+  data() {
+    return {
+      posts: [],
+      city: "",
+    };
+  },
+  async mounted() {
+    const q = query(collection(db, "posts"), where("status", "==", "found"));
+    const querySnapshot = await getDocs(q);
+
+    const values = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    this.posts = values;
+  },
+  watch: {
+    city: async function () {
+      const q = query(
+        collection(db, "posts"),
+        where("status", "==", "found"),
+        where("city", "==", this.city)
+      );
+      const querySnapshot = await getDocs(q);
+
+      const values = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      this.posts = values;
+    },
   },
 };
 </script>
+
+<style scoped>
+.container-foundanimals {
+  background: var(--color-azul-claro);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: Montserrat, sans-serif;
+  min-height: 100vh;
+  padding: 10px 20px;
+  overflow:hidden;
+
+  & h1 {
+    margin: 10px 0;
+    color: var(--color-celeste);
+    filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
+    font-size: 2.5rem;
+  }
+
+  & .select-cities {
+    display: grid;
+    justify-content: end;
+
+    & select {
+      background-color: var(--color-celeste);
+      font-family: Montserrat, sans-serif;
+      border-radius: 5px;
+      width: 200px;
+      text-align: center;
+    }
+  }
+}
+
+.found-animal-cards {
+  width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  margin: 30px;
+}
+</style>

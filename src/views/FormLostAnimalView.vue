@@ -80,16 +80,16 @@ export default {
         content: '',
       },
       formData: {
-        name: 'pepe el chola',
+        name: 'Toby',
         date: '2025-01-01',
         time: '01:01',
-        country: 'Candyland',
-        city: 'Chocolate Fountain',
-        street: 'Avenue Cripis',
+        country: 'España',
+        city: 'Las Palmas de Gran Canaria',
+        street: 'Calle falsa',
         number: '1',
         reward: '',
-        email: 'e@e.com',
-        description: 'ole',
+        email: 'encontrar_a_toby@helpme.com',
+        description: 'perdido bla bla bla',
         URLImage: null,
         uid: ''
       },
@@ -100,15 +100,14 @@ export default {
   },
   methods: {
     async onSubmit() {
-      // TODO: Implementar lógica para enviar el formulario
       console.log(this.formData)
       console.log("valor de isChecked: " + this.isChecked);
 
       const result = await addDoc(collection(db, 'posts'), this.formData)
       console.log("result", result.id)
       this.alert = {
-        title: "Todo ok!",
-        content: "Lo que quiera poner.."
+        title: "Se ha creado tu anuncio correctamente",
+        content: "Esperamos que pronto recibas noticias de la comunidad y encuentres a tu compañera/o"
       }
     },
     async onFileChange(event) {

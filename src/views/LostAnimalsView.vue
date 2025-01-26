@@ -72,12 +72,16 @@ export default {
 <style scoped>
 .container-lostanimals {
   background: var(--color-azul-claro);
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   font-family: Montserrat, sans-serif;
-
+  min-height: 100vh;
+  padding: 10px 20px;
+  overflow:hidden;
   & h1 {
-    margin: 50px 0;
+    margin: 10px 0;
     color: var(--color-celeste);
     filter: drop-shadow(0 0 0.2rem rgb(18, 99, 109));
     font-size: 2.5rem;

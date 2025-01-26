@@ -7,6 +7,16 @@ import FormLostAnimalView from '../views/FormLostAnimalView.vue';
 import AuthView from '../views/AuthView.vue';
 import PostView from '../views/post/PostView.vue';
 import NotFoundView from '../views/404View.vue';
+
+import FaqView from '../views/footerInfo/FaqView.vue';
+import HowItWorksView from '../views/footerInfo/HowItWorksView.vue';
+import BlogView from '../views/footerInfo/BlogView.vue';
+import AccessibilityView from '../views/footerInfo/AccessibilityView.vue';
+import PrivacyView from '../views/footerInfo/PrivacyView.vue';
+import ContactView from '../views/footerInfo/ContactUsView.vue';
+import ValuesView from '../views/footerInfo/OurValuesView.vue';
+import SuccessStoriesView from '../views/footerInfo/SuccessStoriesView.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -14,9 +24,6 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      /*beforeEnter: (to, from, next) => {
-
-      }*/
     },
     {
       path: '/lost-animals',
@@ -41,23 +48,63 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: AuthView
+      component: AuthView,
     },
     {
       path: '/register',
       name: 'register',
-      component: AuthView
+      component: AuthView,
     },
     {
       path: '/post/:id',
       name: 'post-view',
       component: PostView,
-      props: true
+      props: true,
     },
     {
       path: '/404',
       name: '404-view',
       component: NotFoundView,
+    },
+    {
+      path: '/faq',
+      name: 'faq',
+      component: FaqView,
+    },
+    {
+      path: '/how-it-works',
+      name: 'how-it-works',
+      component: HowItWorksView,
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: BlogView,
+    },
+    {
+      path: '/accessibility',
+      name: 'accessibility',
+      component: AccessibilityView,
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: PrivacyView,
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: ContactView,
+    },
+    {
+      path: '/values',
+      name: 'values',
+      component: ValuesView,
+    },
+    {
+      path: '/success-stories',
+      name: 'success-stories',
+      component: SuccessStoriesView,
     },
   ],
 });
