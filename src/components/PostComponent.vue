@@ -36,7 +36,7 @@ main {
   margin: 20px auto;
   background: white;
   border-radius: 10px;
-
+  font-family: Montserrat, sans-serif;
   padding: 20px;
 }
 
@@ -90,7 +90,7 @@ export default {
     CommentsSectionElement
   },
   methods : {
-    
+
   }
 }
 </script>

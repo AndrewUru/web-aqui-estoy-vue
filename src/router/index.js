@@ -16,6 +16,7 @@ import PrivacyView from '../views/footerInfo/PrivacyView.vue';
 import ContactView from '../views/footerInfo/ContactUsView.vue';
 import ValuesView from '../views/footerInfo/OurValuesView.vue';
 import SuccessStoriesView from '../views/footerInfo/SuccessStoriesView.vue';
+import ProfileView from '@/views/ProfileView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,15 +36,16 @@ const router = createRouter({
       name: 'found-animals',
       component: FoundAnimalsView,
     },
-    {
-      path: '/about',
-      name: 'about',
-      component: AboutUsView,
-    },
+
     {
       path: '/form-lost-animal',
       name: 'form-lost-animal',
       component: FormLostAnimalView,
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: ProfileView,
     },
     {
       path: '/login',
@@ -65,6 +67,11 @@ const router = createRouter({
       path: '/404',
       name: '404-view',
       component: NotFoundView,
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutUsView,
     },
     {
       path: '/faq',
