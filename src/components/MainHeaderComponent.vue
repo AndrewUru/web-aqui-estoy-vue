@@ -17,7 +17,6 @@ export default {
     }
   },
   beforeMount() {
-    console.log("Me subscribo a ver quien entró");
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log("Usuario autenticado", user.uid);
@@ -27,7 +26,6 @@ export default {
         console.log("Nos quedamos solitos");
       }
     })
-    console.log("Ya me subscribí");
   },
   methods: {
     logout() {
@@ -132,6 +130,7 @@ export default {
   color: var(--color-azul-oscuro);
   background-color: var(--color-azul-claro);
   padding: 10px;
+  height: 25px;
   justify-content: center;
   align-items: center;
   filter: drop-shadow(0 0 0.2rem rgb(16, 83, 89));

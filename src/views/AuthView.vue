@@ -1,15 +1,15 @@
 <template>
   <div class="split-screen">
     <div class="left-side">
-      <h1>Tu comunidad, su camino a casa</h1>
+      <h1>Tu comunidad,<br> su camino a casa</h1>
       <h2>
         Conecta, busca, y encuentra a tu mascota perdida mientras construimos
         una comunidad solidaria
       </h2>
+      <img :src="petLogin" alt="Man pet a dog" />
     </div>
     <div class="right-side">
       <AuthForm :isLogin="isLogin" @login="login" @register="register" />
-
     </div>
   </div>
 </template>
@@ -29,17 +29,13 @@ export default {
   data() {
     return {
       isLogin: false,
+      petLogin: "/images/petLogin.svg"
     }
   },
   methods: {
     async login(login) {
       try {
-        console.log(login.email, login.password)
-        const userCredential = await signInWithEmailAndPassword(auth, login.email, login.password)
-        console.log(userCredential);
-
-        console.log(auth.currentUser);
-
+        await signInWithEmailAndPassword(auth, login.email, login.password)
       } catch (Error) {
         console.log(Error);
         toast("Contraseña o correo incorrecto", {
@@ -53,16 +49,15 @@ export default {
     },
     async register(login) {
       try {
-        console.log(login.email, login.password)
-        const userCredential = await createUserWithEmailAndPassword(auth, login.email, login.password)
-
-        console.log(userCredential);
-
-        console.log(auth.currentUser);
-
+        await createUserWithEmailAndPassword(auth, login.email, login.password)
       } catch (Error) {
         console.log(Error);
-
+        toast("Hay ocurrido un error: `${Error}`", {
+          "theme": "colored",
+          "type": "error",
+          "transition": "flip",
+          "dangerouslyHTMLString": true
+        })
       }
     }
   },
@@ -83,17 +78,22 @@ export default {
   watch: {
     $route(to) {
       this.isLogin = to.name === 'login';
-
     }
   }
 }
 </script>
 
 <style scoped>
+body {
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: auto;
+}
+
 .split-screen {
+  min-height: calc(100dvh - var(--header-height));
   display: flex;
-  height: 100vh;
-  width: 100vw;
 }
 
 .left-side,
@@ -103,7 +103,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 .left-side {
@@ -112,18 +111,10 @@ export default {
   text-align: center;
   display: flex;
   flex-direction: column;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
-    url('images/petLogin.svg');
-  background-size: cover;
-  background-position: center;
-
 }
 
 .left-side h1 {
   font-size: 2.5rem;
-  margin-top: 80px;
-  margin-bottom: 10px;
   font-family: "Luckiest Guy", system-ui;
   letter-spacing: 2px;
 }
@@ -137,5 +128,10 @@ export default {
 
 .right-side {
   background-color: var(--color-azul-claro);
+}
+
+img {
+  width: 50%;
+  height: auto;
 }
 </style>

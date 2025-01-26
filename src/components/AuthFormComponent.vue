@@ -1,24 +1,28 @@
 <template>
   <div class="auth-form">
     <form class="login-form" @submit.prevent v-if="isLogin">
-      <h2>BIENVENIDO DE VUELTA</h2>
-      <button class="google-login">
-        <img src="/icons/google.svg" alt="Google Icon" /> Continuar con Google
-      </button>
-      <div class="or-container">
-        <div class="separator-line"></div>
-        <div class="or-separator">o</div>
-        <div class="separator-line"></div>
-      </div>
+      <h2>Bienvenido de nuevo</h2>
       <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
       <input type="email" v-model="login.email" :class="{ error: hasError }" required class="input-field" />
       <label class="form-label password-label">
         Contraseña
-        <button type="button" class="password-toggle">
-          <img src="/icons/eye-tracking.svg" alt="Eye tracking Icon" />
-        </button>
+        <button
+    type="button"
+    class="password-toggle"
+    @click="togglePasswordVisibility"
+  >
+    <img
+      :src="isPasswordVisible ? '/icons/eye-off.svg' : '/icons/eye-tracking.svg'"
+      :alt="isPasswordVisible ? 'Hide password' : 'Show password'"
+    /></button>
       </label>
-      <input type="password" v-model="login.password" :class="{ error: hasError }" required class="input-field" />
+      <input
+  :type="isPasswordVisible ? 'text' : 'password'"
+  v-model="login.password"
+  :class="{ error: hasError }"
+  required
+  class="input-field"
+/>
       <div class="form-links password">
         <a href="#">¿Olvidaste tu contraseña?</a>
       </div>
@@ -31,24 +35,31 @@
 
     <form class="login-form" @submit.prevent v-else>
       <h2>Únete a nuestra comunidad</h2>
-      <button class="google-login">
-        <img src="/icons/google.svg" alt="Google Icon" /> Continuar con Google
-      </button>
-      <div class="or-container">
-        <div class="separator-line"></div>
-        <div class="or-separator">o</div>
-        <div class="separator-line"></div>
-      </div>
       <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
       <input type="email" v-model="login.email" required class="input-field" />
       <label class="form-label password-label">
         Contraseña
-        <button type="button" class="password-toggle">
-          <img src="/icons/eye-tracking.svg" alt="Eye-tracking Icon" />
-        </button>
+        <button
+          type="button"
+          class="password-toggle"
+          @click="togglePasswordVisibility"
+        >
+    <img
+      :src="isPasswordVisible ? '/icons/eye-off.svg' : '/icons/eye-tracking.svg'"
+      :alt="isPasswordVisible ? 'Hide password' : 'Show password'"
+    />
+  </button>
       </label>
-      <input type="password" v-model="login.password" required class="input-field" />
-
+      <input
+        :type="isPasswordVisible ? 'text' : 'password'"
+        v-model="login.password"
+        :class="{ error: hasError }"
+        required
+        class="input-field"
+      />
+      <div class="form-links login">
+        <a href="login">Ya tengo cuenta</a>
+      </div>
       <button type="submit" @click="$emit('register', login)" class="login-button">Registrarme</button>
     </form>
   </div>
@@ -79,8 +90,14 @@ export default {
         email: "",
         password: "",
       },
+      isPasswordVisible: false,
       // Mensaje de error
     }
+  },
+  methods: {
+    togglePasswordVisibility() {
+      this.isPasswordVisible = !this.isPasswordVisible;
+    },
   },
 }
 </script>
@@ -88,7 +105,6 @@ export default {
 <style scoped>
 body {
   margin: 0;
-
   height: 100vh;
   width: auto;
 }
@@ -161,20 +177,6 @@ img {
   font-size: 2rem;
 }
 
-.google-login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-  margin: 10px;
-}
 
 .login-button {
   display: flex;
@@ -192,26 +194,6 @@ img {
     transition: 0.75s;
     box-shadow: 0 12px 16px 0 rgba(194, 194, 194, 0.24), 0 17px 50px 0 rgba(192, 192, 192, 0.19);
   }
-}
-
-.or-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.separator-line {
-  height: 1px;
-  width: 100px;
-  background-color: #ccc;
-}
-
-.or-separator {
-  margin: 0 10px;
-  font-size: 20px;
-  color: var(--color-azul-oscuro);
-  line-height: 1;
-  white-space: nowrap;
 }
 
 .form-label {
@@ -257,6 +239,9 @@ img {
   &.signin {
     justify-content: flex-start;
   }
+  &.login {
+    justify-content: flex-end;
+  }
 
   & a {
     color: var(--color-azul-oscuro);
@@ -268,5 +253,7 @@ img {
 
 .form-links a:hover {
   text-decoration: underline;
+  color:white;
 }
+
 </style>

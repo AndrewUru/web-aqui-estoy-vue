@@ -1,16 +1,32 @@
 <template>
-  <div class="landing-page-1">
-    <img :src="girlCatIcon" alt="" />
-    <div class="container-rigth-side">
-      <h1>TRAEMOS A TU <span>MASCOTA</span> DE VUELTA</h1>
-      <div id="container-light-blue">
-        <div class="elements-container">
-          <h2 class="text-inside-absolute">
-            Conéctate con otros para encontrar mascotas
-          </h2>
-          <h2>pérdidas o ayudar a otros a encontrar las suyas</h2>
-          <h3>¡Juntos podemos lograrlo!</h3>
-          <button type="button">ÚNETE</button>
+  <div class="container">
+
+    <div class="card">
+      <img :src="girlDog" alt="Girl Dog" />
+      <div class="card-content">
+        <h1 class="title">
+          {{ currentUser && currentUser.email ? `¡HOLA, ${currentUser.email}!` : '¡HOLA!' }}
+        </h1>
+        <p class="subtitle">
+          Gracias por estar aquí,
+          <br />
+          recuperemos la alegría del hogar.
+        </p>
+        <div class="button-group">
+          <RouterLink
+          to="/form-lost-animal"
+          class="button"
+        >
+          Necesito ayuda
+          <span>😢</span>
+        </RouterLink>
+        <RouterLink
+          to="/lost-animals"
+          class="button"
+        >
+          Quiero ayudar
+          <span>🥰</span>
+        </RouterLink>
         </div>
       </div>
     </div>
@@ -18,96 +34,122 @@
 </template>
 
 <script>
-import { annotate } from "rough-notation";
+import { RouterLink } from 'vue-router';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase.js';
+
 
 export default {
+  components: {
+    RouterLink,
+  },
+  name: "WelcomeScreen",
+  props: {
+  },
   data() {
     return {
-      girlCatIcon: "/icons/girl_with_cat.svg" // Ruta relativa desde la carpeta public
+      girlDog: "/images/girlDog.svg",
+      currentUser: null,
+      isLogin: false,
     };
   },
-  mounted() {
-    const petSpan = this.$el.querySelector("h1 span");
-    const annotation = annotate(petSpan, { type: "underline", color: 'red' });
-
-    petSpan.addEventListener("mouseenter", () => { annotation.show() }, { once: true });
-  }
+  beforeMount() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("Usuario autenticado", user.uid);
+        this.currentUser = user;
+      } else {
+        console.log("Nos quedamos solitos");
+      }
+    })
+  },
+  methods: {
+    handleHelpNeeded() {
+      alert("Redirigiendo a la página de ayuda...");
+    },
+    handleWantToHelp() {
+      alert("Redirigiendo a la página para ayudar...");
+    },
+  },
 };
 </script>
 
 <style scoped>
-.landing-page-1 {
-  margin: auto;
-  background-color: var(--color-celeste);
+.container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  background-color: #dbeafe;
+  font-family: "Luckiest Guy", system-ui;
+  letter-spacing: 2px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 800px;
+  max-width: 80%;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+.subtitle {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: #1e40af;
+}
+
+.button-group {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button {
+  width: 200px;
+  padding: 0.75rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s;
+  text-decoration: none;
   font-family: Montserrat, sans-serif;
-  z-index: -2;
+}
 
-  & img {
-    max-width: var(--size-imag);
-    max-height: var(--size-imag);
-    margin-top: 20px;
-    z-index: 1;
-  }
+.button:hover {
+  background-color: #2563eb;
+}
 
-  & .container-rigth-side {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    z-index: 0;
-
-    & h1 {
-      font-family: "Luckiest Guy", system-ui;
-      font-size: 100px;
-      color: var(--color-azul-oscuro);
-      text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.321);
-      margin-top: 20px;
-      text-wrap: pretty;
-    }
-
-    & .elements-container {
-      display: flex;
-      flex-direction: column;
-      margin-left: 50%;
-      margin-bottom: 5px;
-      align-items: center;
-    }
-
-    & h2,
-    h3 {
-      font-size: 22px;
-      color: var(--color-azul-oscuro);
-      width: 600px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-
-    & h3 {
-      margin-top: 15px;
-    }
-
-    & .text-inside-absolute {
-      margin-top: 25px;
-    }
-
-    & button {
-      background-color: var(--color-azul-oscuro);
-      border-radius: 15px;
-      color: var(--color-celeste);
-      padding: 5px 20px;
-      font-size: 30px;
-      margin-top: 15px;
-    }
-
-    & #container-light-blue {
-      position: absolute;
-      top: 500px;
-      left: 40px;
-      background-color: white;
-      width: 95%;
-      height: 250px;
-      z-index: -1;
-    }
-  }
+img {
+  width: 50%;
+  height: auto;
 }
 </style>
+
