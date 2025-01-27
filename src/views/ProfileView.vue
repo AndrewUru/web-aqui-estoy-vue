@@ -8,7 +8,7 @@
             <div class="user-name-edit">
               <h2>{{ user.name }}</h2>
               <img class="edit-icon" src="@/assets/EditIcon.svg" alt="Edit Icon" @click="openModal()">
-              <ModalUserForm v-show="isModalVisible" @accept="acceptModal()" :user='user' />
+              <ModalUserForm v-if="isModalVisible" @accept="acceptModal()" :user='user' />
 
             </div>
             <div>
@@ -61,6 +61,7 @@ export default {
         name: '',
         email: '',
         location: '',
+        createdAt: '',
         memberSince: '',
         uid: '',
         pets: [
@@ -100,6 +101,7 @@ export default {
     },
     acceptModal() {
       this.isModalVisible = false;
+      this.getUserInfo(this.user.uid)
     },
     async getUserInfo(uid) {
       const docRef = doc(db, "users", uid);
@@ -112,8 +114,11 @@ export default {
         if (createdAt) {
           this.user.memberSince = new Date(createdAt.seconds * 1000).toLocaleDateString('es-ES');
         }
-        this.user.email = email;
+        if (!this.user.email || this.user.email == "") {
+          this.user.email = email;
+        }
         this.user.location = location;
+        this.user.createdAt = createdAt;
 
         if ((this.user.name == "" || !!this.user.name) && this.user.email) {
           this.user.name = email.substring(0, email.indexOf("@"));
