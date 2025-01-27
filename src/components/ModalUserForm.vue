@@ -1,9 +1,19 @@
 <template>
     <div class="modal">
         <div class="modal-contenido">
-            <h2 class="modal-titulo">{{ title }}</h2>
-            <p>{{ content }}</p>
-            <button @click="$emit('accept');" class="btn-aceptar">Aceptar</button>
+            <form action="">
+                <label for="">Nombre:
+                    <input type="text">
+                </label>
+                <label for="">Email:
+                    <input type="email">
+                </label>
+                <label for="">Ubicación:
+                    <input type="text">
+                </label>
+                <button @click="$emit('accept');" class="btn-aceptar">Aceptar</button>
+            </form>
+
         </div>
     </div>
 </template>
@@ -19,6 +29,9 @@ export default {
             type: String,
         }
     },
-    emits: ["accept"]
+    emits: ["accept"],
+    methods: {
+
+    }
 }
 </script>

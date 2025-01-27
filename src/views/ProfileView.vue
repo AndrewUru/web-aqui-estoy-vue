@@ -7,7 +7,9 @@
           <div class="user-details">
             <div class="user-name-edit">
               <h2>{{ user.name }}</h2>
-              <img class="edit-icon" src="@/assets/EditIcon.svg" alt="Edit Icon" />
+              <img class="edit-icon" src="@/assets/EditIcon.svg" alt="Edit Icon" @click="openModal()">
+              <ModalUserForm v-show="isModalVisible" @accept="acceptModal()" />
+
             </div>
             <div>
               <p><strong>Email:</strong> {{ user.email }}</p>
@@ -41,15 +43,18 @@
 import { RouterLink } from 'vue-router';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase.js';
+import ModalUserForm from '@/components/ModalUserForm.vue';
 
 export default {
 
   name: 'UserProfile',
   components: {
     RouterLink,
+    ModalUserForm
   },
   data() {
     return {
+      isModalVisible: false,
       user: {
         image: 'https://static.vecteezy.com/system/resources/previews/020/669/349/non_2x/doodle-portrait-of-a-handsome-man-with-stylish-haircut-and-a-beard-isolated-outline-hand-drawn-illustration-in-black-ink-on-white-background-vector.jpg', // Imagen de perfil del usuario
         name: 'Juan Pérez',
@@ -87,6 +92,12 @@ export default {
     },
     viewPet(petId) {
       console.log(`Viendo detalles de la mascota con id: ${petId}`);
+    },
+    openModal() {
+      this.isModalVisible = true;
+    },
+    acceptModal() {
+      this.isModalVisible = false;
     }
   }
 };
