@@ -2,7 +2,7 @@
   <main>
     <div class="post">
       <div class="pet-info">
-        <img :src="post.image" :alt="post.name" />
+        <img :src="post.URLImage" :alt="post.name" />
         <div class="pet-details">
           <h2>{{ post.name }}</h2>
           <p>
@@ -12,7 +12,7 @@
           </p>
           <p class="contact">Contacto: {{ post.contact }}</p>
           <p>{{ post.description }}</p>
-          <p><strong>Se ofrece recompensa de {{ post.reward }}</strong></p>
+          <p v-if="isReward"><strong>Se ofrece recompensa de {{ post.reward }}</strong></p>
           <p>Publicado por: <strong>{{ post.author }}</strong></p>
         </div>
       </div>
@@ -86,11 +86,20 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      isReward: false,
+    }
+  },
   components: {
     CommentsSectionElement
   },
-  methods : {
-
+  methods: {
+    checkingReward() {
+      if (this.post.reward) {
+        this.isReward = true;
+      }
+    }
   }
 }
 </script>
