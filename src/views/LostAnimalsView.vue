@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { collection, getDocs, query, where} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import LostCard from "../components/elements/LostCardElement.vue";
 import { db } from "../firebase";
 
@@ -79,7 +79,8 @@ export default {
   font-family: Montserrat, sans-serif;
   min-height: 100vh;
   padding: 10px 20px;
-  overflow:hidden;
+  overflow: hidden;
+
   & h1 {
     margin: 10px 0;
     color: var(--color-celeste);

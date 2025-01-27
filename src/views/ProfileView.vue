@@ -5,10 +5,16 @@
         <div class="profile-info">
           <img :src="user.image" alt="Imagen de perfil" class="profile-image" />
           <div class="user-details">
-            <h2>{{ user.name }}</h2>
-            <p><strong>Email:</strong> {{ user.email }}</p>
-            <p><strong>Ubicación:</strong> {{ user.location }}</p>
-            <p><strong>Miembro desde:</strong> {{ user.memberSince }}</p>
+            <div class="user-name-edit">
+              <h2>{{ user.name }}</h2>
+              <img class="edit-icon" src="@/assets/EditIcon.svg" alt="Edit Icon" />
+            </div>
+            <div>
+              <p><strong>Email:</strong> {{ user.email }}</p>
+              <p><strong>Ubicación:</strong> {{ user.location }}</p>
+              <p><strong>Miembro desde:</strong> {{ user.memberSince }}</p>
+            </div>
+
           </div>
         </div>
         <div class="pets-list">
@@ -167,7 +173,8 @@ main {
   border: none;
   text-decoration: none;
   display: inline-block;
-  margin: 10px 0; /* Ensure there is space around the button */
+  margin: 10px 0;
+  /* Ensure there is space around the button */
 }
 
 .action-button.new-pet {
@@ -177,7 +184,8 @@ main {
   color: white;
   text-decoration: none;
   display: inline-block;
-  margin: 10px 0; /* Ensure there is space around the button */
+  margin: 10px 0;
+  /* Ensure there is space around the button */
 }
 
 .pets-container {
@@ -217,5 +225,11 @@ main {
   margin: 5px 0;
 }
 
+.user-name-edit {
+  display: flex;
 
+  & h2 {
+    padding-right: 15px;
+  }
+}
 </style>
