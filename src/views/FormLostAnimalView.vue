@@ -9,7 +9,7 @@
         </label>
         <label class="label-group a">Última vez visto</label>
         <label for="date"> <em>Fecha:</em>
-          <input type="date" name="date" id="date" v-model="formData.date" required>
+          <input type="date" name="date" id="date" v-model="dateForm" required>
         </label>
         <label for="time"><em>Hora:</em>
           <input type="text" placeholder="Ejemplo 00:00" name="time" id="time" v-model="formData.time" required>
@@ -80,25 +80,35 @@ export default {
         content: '',
       },
       formData: {
-        name: 'Toby',
-        date: '2025-01-01',
-        time: '01:01',
-        country: 'España',
-        city: 'Las Palmas de Gran Canaria',
-        street: 'Calle falsa',
-        number: '1',
+        name: '',
+        date: '',
+        time: '',
+        country: '',
+        city: '',
+        street: '',
+        number: '',
         reward: '',
-        email: 'encontrar_a_toby@helpme.com',
-        description: 'perdido bla bla bla',
+        email: '',
+        description: '',
         URLImage: null,
         uid: ''
       },
+      dateForm: '',
     }
   },
   components: {
     ModalComponent
   },
   methods: {
+    dateFormat() {
+      if (this.dateForm) {
+        const datef = new Date(this.dateForm);
+        console.log(datef);
+        this.formData.date = datef.toLocaleDateString();
+      }
+
+    },
+
     async onSubmit() {
       console.log(this.formData)
       console.log("valor de isChecked: " + this.isChecked);
