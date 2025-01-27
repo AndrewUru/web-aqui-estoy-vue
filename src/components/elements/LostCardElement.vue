@@ -14,7 +14,7 @@
       </div>
       <div class="footer-container bottom">
         <div class="clock"><img class="icon" src="@/assets/ClockIcon.svg" alt="Clock Icon" />
-          <p>Perdido: {{ posts.date }}</p>
+          <p>Perdido: {{ formatDate(posts.date) }}</p>
         </div>
         <div class="chat">
           <router-link :to="`/post/${posts.id}`" class="lostanimal-card">
@@ -141,4 +141,14 @@ defineProps({
     required: true
   }
 })
+
+function formatDate(date) {
+  const mDate = new Date(date)
+
+  return mDate.toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  })
+}
 </script>
