@@ -17,8 +17,9 @@
 <script>
 import AuthForm from '@/components/AuthFormComponent.vue';
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase.js';
+import { auth, db } from '../firebase.js';
 import { toast } from 'vue3-toastify';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 export default {
 
@@ -36,6 +37,8 @@ export default {
     async login(login) {
       try {
         await signInWithEmailAndPassword(auth, login.email, login.password)
+        this.$router.push({ name: 'home' })
+
       } catch (Error) {
         console.log(Error);
         toast("Contraseña o correo incorrecto", {
@@ -49,7 +52,17 @@ export default {
     },
     async register(login) {
       try {
-        await createUserWithEmailAndPassword(auth, login.email, login.password)
+        const register = await createUserWithEmailAndPassword(auth, login.email, login.password)
+        if (register.user.uid) {
+
+          setDoc(doc(db, "users", `${register.user.uid}`), {
+            createdAt: new Date(),
+            email: login.email,
+          })
+
+          this.$router.push({ name: 'home' })
+        }
+
       } catch (Error) {
         console.log(Error);
         toast("Hay ocurrido un error: `${Error}`", {
@@ -68,7 +81,6 @@ export default {
       console.log(user)
       if (user) {
         console.log("Usuario autenticado", user.uid)
-        this.$router.push({ name: 'home' })
       } else {
         console.log("Usuario no autenticado")
       }

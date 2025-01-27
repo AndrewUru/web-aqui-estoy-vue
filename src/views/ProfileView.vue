@@ -41,9 +41,10 @@
 
 <script>
 import { RouterLink } from 'vue-router';
-import { signOut } from 'firebase/auth';
-import { auth } from '../firebase.js';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth, db } from '../firebase.js';
 import ModalUserForm from '@/components/ModalUserForm.vue';
+import { doc, getDoc } from 'firebase/firestore';
 
 export default {
 
@@ -57,10 +58,10 @@ export default {
       isModalVisible: false,
       user: {
         image: 'https://static.vecteezy.com/system/resources/previews/020/669/349/non_2x/doodle-portrait-of-a-handsome-man-with-stylish-haircut-and-a-beard-isolated-outline-hand-drawn-illustration-in-black-ink-on-white-background-vector.jpg', // Imagen de perfil del usuario
-        name: 'Juan Pérez',
-        email: 'juan.perez@example.com',
-        location: 'Madrid, España',
-        memberSince: 'Enero 2022',
+        name: '',
+        email: '',
+        location: '',
+        memberSince: '',
         pets: [
           {
             id: 1,
@@ -98,7 +99,40 @@ export default {
     },
     acceptModal() {
       this.isModalVisible = false;
+    },
+    async getUserInfo(uid) {
+      const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+
+        const { createdAt, email, name } = docSnap.data();
+
+        this.user.memberSince = new Date(createdAt.seconds * 1000).toLocaleDateString('es-ES');
+        this.user.email = email;
+
+        if (this.user.name == "" || !!this.user.name) {
+          this.user.name = email.substring(0, email.indexOf("@"));
+        } else {
+          this.user.name = name;
+        }
+      }
     }
+  },
+  async mounted() {
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User logged in");
+        this.user.email = user.email;
+        this.user.name = user.email.substring(0, user.email.indexOf("@"));
+
+        this.getUserInfo(user.uid)
+      } else {
+        console.log("User logged out");
+      }
+    });
+
   }
 };
 </script>
