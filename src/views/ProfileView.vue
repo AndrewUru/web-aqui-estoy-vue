@@ -8,7 +8,7 @@
             <div class="user-name-edit">
               <h2>{{ user.name }}</h2>
               <img class="edit-icon" src="@/assets/EditIcon.svg" alt="Edit Icon" @click="openModal()">
-              <ModalUserForm v-show="isModalVisible" @accept="acceptModal()" />
+              <ModalUserForm v-show="isModalVisible" @accept="acceptModal()" :user='user' />
 
             </div>
             <div>
@@ -62,6 +62,7 @@ export default {
         email: '',
         location: '',
         memberSince: '',
+        uid: '',
         pets: [
           {
             id: 1,
@@ -106,12 +107,15 @@ export default {
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
 
-        const { createdAt, email, name } = docSnap.data();
+        const { createdAt, email, name, location } = docSnap.data();
 
-        this.user.memberSince = new Date(createdAt.seconds * 1000).toLocaleDateString('es-ES');
+        if (createdAt) {
+          this.user.memberSince = new Date(createdAt.seconds * 1000).toLocaleDateString('es-ES');
+        }
         this.user.email = email;
+        this.user.location = location;
 
-        if (this.user.name == "" || !!this.user.name) {
+        if ((this.user.name == "" || !!this.user.name) && this.user.email) {
           this.user.name = email.substring(0, email.indexOf("@"));
         } else {
           this.user.name = name;
@@ -126,7 +130,7 @@ export default {
         console.log("User logged in");
         this.user.email = user.email;
         this.user.name = user.email.substring(0, user.email.indexOf("@"));
-
+        this.user.uid = user.uid;
         this.getUserInfo(user.uid)
       } else {
         console.log("User logged out");
