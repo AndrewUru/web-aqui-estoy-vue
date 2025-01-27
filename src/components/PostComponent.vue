@@ -94,11 +94,10 @@ export default {
   components: {
     CommentsSectionElement
   },
-  methods: {
-    checkingReward() {
-      if (this.post.reward) {
-        this.isReward = true;
-      }
+  mounted() {
+    console.log("esta es la recompensa " + this.post.reward);
+    if (this.post.reward) {
+      this.isReward = true;
     }
   }
 }
