@@ -13,20 +13,14 @@
           recuperemos la alegría del hogar.
         </p>
         <div class="button-group">
-          <RouterLink
-          to="/form-lost-animal"
-          class="button"
-        >
-          Necesito ayuda
-          <span>😢</span>
-        </RouterLink>
-        <RouterLink
-          to="/lost-animals"
-          class="button"
-        >
-          Quiero ayudar
-          <span>🥰</span>
-        </RouterLink>
+          <RouterLink to="/form-lost-animal" class="button">
+            Necesito ayuda
+
+          </RouterLink>
+          <RouterLink to="/lost-animals" class="button">
+            Quiero ayudar
+
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -108,7 +102,7 @@ export default {
 .title {
   font-size: 2rem;
   font-weight: bold;
-  color: #1e3a8a;
+  color: var(--color-azul);
 }
 
 .subtitle {
@@ -127,7 +121,7 @@ export default {
 .button {
   width: 200px;
   padding: 0.75rem;
-  background-color: #3b82f6;
+  background-color: #184690;
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -152,4 +146,3 @@ img {
   height: auto;
 }
 </style>
-
