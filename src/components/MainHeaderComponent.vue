@@ -91,7 +91,7 @@ export default {
 
 .nav-links a,
 .header-right a {
-  color: var(--color-celeste);
+  color: white;
   text-decoration: none;
 }
 
@@ -113,16 +113,7 @@ export default {
   font-family: "Luckiest Guy", system-ui;
   font-size: 20px;
   margin: 0;
-  /* Elimina cualquier margen predeterminado */
 }
-
-
-.header-left p {
-  color: var(--color-celeste);
-  font-family: "Luckiest Guy", system-ui;
-  font-size: 20px;
-}
-
 
 .button-auth {
   display: flex;

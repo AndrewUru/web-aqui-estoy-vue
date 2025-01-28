@@ -14,11 +14,35 @@
         <label for="time"><em>Hora:</em>
           <input type="text" placeholder="Ejemplo 00:00" name="time" id="time" v-model="formData.time" required>
         </label>
-        <label for="country">País:
-          <input type="text" name="country" id="country" v-model="formData.country" required>
+        <label for="city">Municipio:
+          <div class="select-cities">
+            <select v-model="formData.municipality" name="city" id="city">
+              <option value="agaete">Agaete</option>
+              <option value="aguimes">Agüimes</option>
+              <option value="artenara">Artenara</option>
+              <option value="arucas">Arucas</option>
+              <option value="firgas">Firgas</option>
+              <option value="galdar">Gáldar</option>
+              <option value="ingenio">Ingenio</option>
+              <option value="la-aldea-de-san-nicolas">La Aldea de San Nicolás</option>
+              <option value="las-palmas">Las Palmas de G.C.</option>
+              <option value="mogan">Mogán</option>
+              <option value="moya">Moya</option>
+              <option value="san-bartolome-de-tirajana">San Bartolomé de Tirajana</option>
+              <option value="san-mateo">San Mateo</option>
+              <option value="santa-lucia-de-tirajana">Santa Lucía de Tirajana</option>
+              <option value="santa-brigida">Santa Brígida</option>
+              <option value="santa-maria-de-guia">Santa María de Guía</option>
+              <option value="tejeda">Tejeda</option>
+              <option value="telde">Telde</option>
+              <option value="teror">Teror</option>
+              <option value="valleseco">Valleseco</option>
+              <option value="valsequillo">Valsequillo</option>
+            </select>
+          </div>
         </label>
-        <label for="city">Ciudad:
-          <input type="text" name="city" id="city" v-model="formData.city" required>
+        <label for="formData.city">Localidad:
+          <input type="text" name="street" id="street" v-model="formData.street" required>
         </label>
         <label for="street">Calle:
           <input type="text" name="street" id="street" v-model="formData.street" required>
@@ -83,7 +107,7 @@ export default {
         name: 'Toby',
         date: '2025-01-01',
         time: '01:01',
-        country: 'España',
+        municipality: '',
         city: 'Las Palmas de Gran Canaria',
         street: 'Calle falsa',
         number: '1',
@@ -141,15 +165,6 @@ export default {
     acceptModal() {
       this.$router.push({ name: 'home' })
     },
-    /*formWindow() {
-      let newWindow = open("/", "example", "width=300,height=300");
-      newWindow.focus();
-      alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
-      newWindow.onload = function() {
-      let html = `<div style="font-size:30px">Welcome!</div>`;
-      newWindow.document.body.insertAdjacentHTML("afterbegin", html);
-};*/
-
   },
   mounted() {
 
@@ -201,6 +216,20 @@ export default {
     grid-template-columns: 400px;
     font-family: Montserrat, sans-serif;
     font-size: 1rem;
+
+    & .select-cities {
+      display: grid;
+      justify-content: end;
+      width: 100%;
+
+      & select {
+        background-color: var(--color-celeste);
+        font-family: Montserrat, sans-serif;
+        border-radius: 5px;
+        width: 200px;
+        text-align: center;
+      }
+    }
 
     & label {
       display: inline-grid;

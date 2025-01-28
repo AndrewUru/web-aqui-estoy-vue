@@ -6,7 +6,8 @@
         <div class="pet-details">
           <h2>{{ post.name }}</h2>
           <p>
-            <strong>Perdido en {{ post.location }}</strong>
+            <strong>Perdido en {{ post.municipality }}, en la localidad de {{ post.city }}.</strong>
+            <strong>En la calle {{ post.street }}.</strong>
             <br />
             Última vez visto el {{ post.date }}
           </p>
