@@ -4,10 +4,27 @@
     <div class="select-cities">
       <select v-model="city" name="city" id="city">
         <!-- Pendiente de API-->
-        <option value="laspalmas">Las Palmas de G.C.</option>
-        <option value="Telde">Telde</option>
-        <option value="Sanmateo">San Mateo</option>
-        <option value="maspalomas">Maspalomas</option>
+        <option value="agaete">Agaete</option>
+        <option value="aguimes">Agüimes</option>
+        <option value="artenara">Artenara</option>
+        <option value="arucas">Arucas</option>
+        <option value="firgas">Firgas</option>
+        <option value="galdar">Gáldar</option>
+        <option value="ingenio">Ingenio</option>
+        <option value="la-aldea-de-san-nicolas">La Aldea de San Nicolás</option>
+        <option value="las-palmas">Las Palmas de G.C.</option>
+        <option value="mogan">Mogán</option>
+        <option value="moya">Moya</option>
+        <option value="san-bartolome-de-tirajana">San Bartolomé de Tirajana</option>
+        <option value="san-mateo">San Mateo</option>
+        <option value="santa-lucia-de-tirajana">Santa Lucía de Tirajana</option>
+        <option value="santa-brigida">Santa Brígida</option>
+        <option value="santa-maria-de-guia">Santa María de Guía</option>
+        <option value="tejeda">Tejeda</option>
+        <option value="telde">Telde</option>
+        <option value="teror">Teror</option>
+        <option value="valleseco">Valleseco</option>
+        <option value="valsequillo">Valsequillo</option>
       </select>
     </div>
     <div class="lost-animal-cards">
@@ -17,7 +34,7 @@
 </template>
 
 <script>
-import { collection, getDocs, query, where} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import LostCard from "../components/elements/LostCardElement.vue";
 import { db } from "../firebase";
 
@@ -53,7 +70,7 @@ export default {
   watch: {
     city: async function () {
       console.log(this.city);
-      const q = query(collection(db, "posts"), where('city', '==', this.city));
+      const q = query(collection(db, "posts"), where('municipality', '==', this.city));
       const querySnapshot = await getDocs(q);
 
       const values = querySnapshot.docs.map((doc) => {
@@ -79,7 +96,8 @@ export default {
   font-family: Montserrat, sans-serif;
   min-height: 100vh;
   padding: 10px 20px;
-  overflow:hidden;
+  overflow: hidden;
+
   & h1 {
     margin: 10px 0;
     color: var(--color-celeste);

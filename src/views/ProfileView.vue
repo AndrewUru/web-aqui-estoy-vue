@@ -5,10 +5,18 @@
         <div class="profile-info">
           <img :src="user.image" alt="Imagen de perfil" class="profile-image" />
           <div class="user-details">
-            <h2>{{ user.name }}</h2>
-            <p><strong>Email:</strong> {{ user.email }}</p>
-            <p><strong>Ubicación:</strong> {{ user.location }}</p>
-            <p><strong>Miembro desde:</strong> {{ user.memberSince }}</p>
+            <div class="user-name-edit">
+              <h2>{{ user.name }}</h2>
+              <img class="edit-icon" src="@/assets/EditIcon.svg" alt="Edit Icon" @click="openModal()">
+              <ModalUserForm v-if="isModalVisible" @accept="acceptModal()" :user='user' />
+
+            </div>
+            <div>
+              <p><strong>Email:</strong> {{ user.email }}</p>
+              <p><strong>Ubicación:</strong> {{ user.location }}</p>
+              <p><strong>Miembro desde:</strong> {{ user.memberSince }}</p>
+            </div>
+
           </div>
         </div>
         <div class="pets-list">
@@ -33,23 +41,29 @@
 
 <script>
 import { RouterLink } from 'vue-router';
-import { signOut } from 'firebase/auth';
-import { auth } from '../firebase.js';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth, db } from '../firebase.js';
+import ModalUserForm from '@/components/ModalUserForm.vue';
+import { doc, getDoc } from 'firebase/firestore';
 
 export default {
 
   name: 'UserProfile',
   components: {
     RouterLink,
+    ModalUserForm
   },
   data() {
     return {
+      isModalVisible: false,
       user: {
         image: 'https://static.vecteezy.com/system/resources/previews/020/669/349/non_2x/doodle-portrait-of-a-handsome-man-with-stylish-haircut-and-a-beard-isolated-outline-hand-drawn-illustration-in-black-ink-on-white-background-vector.jpg', // Imagen de perfil del usuario
-        name: 'Juan Pérez',
-        email: 'juan.perez@example.com',
-        location: 'Madrid, España',
-        memberSince: 'Enero 2022',
+        name: '',
+        email: '',
+        location: '',
+        createdAt: '',
+        memberSince: '',
+        uid: '',
         pets: [
           {
             id: 1,
@@ -81,7 +95,53 @@ export default {
     },
     viewPet(petId) {
       console.log(`Viendo detalles de la mascota con id: ${petId}`);
+    },
+    openModal() {
+      this.isModalVisible = true;
+    },
+    acceptModal() {
+      this.isModalVisible = false;
+      this.getUserInfo(this.user.uid)
+    },
+    async getUserInfo(uid) {
+      const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+
+        const { createdAt, email, name, location } = docSnap.data();
+
+        if (createdAt) {
+          this.user.memberSince = new Date(createdAt.seconds * 1000).toLocaleDateString('es-ES');
+        }
+        if (!this.user.email || this.user.email == "") {
+          this.user.email = email;
+        }
+        this.user.location = location;
+        this.user.createdAt = createdAt;
+
+        if ((this.user.name == "" || !!this.user.name) && this.user.email) {
+          this.user.name = email.substring(0, email.indexOf("@"));
+        } else {
+          this.user.name = name;
+        }
+      }
     }
+  },
+  async mounted() {
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User logged in");
+        this.user.email = user.email;
+        this.user.name = user.email.substring(0, user.email.indexOf("@"));
+        this.user.uid = user.uid;
+        this.getUserInfo(user.uid)
+      } else {
+        console.log("User logged out");
+      }
+    });
+
   }
 };
 </script>
@@ -167,7 +227,8 @@ main {
   border: none;
   text-decoration: none;
   display: inline-block;
-  margin: 10px 0; /* Ensure there is space around the button */
+  margin: 10px 0;
+  /* Ensure there is space around the button */
 }
 
 .action-button.new-pet {
@@ -177,7 +238,8 @@ main {
   color: white;
   text-decoration: none;
   display: inline-block;
-  margin: 10px 0; /* Ensure there is space around the button */
+  margin: 10px 0;
+  /* Ensure there is space around the button */
 }
 
 .pets-container {
@@ -217,5 +279,11 @@ main {
   margin: 5px 0;
 }
 
+.user-name-edit {
+  display: flex;
 
+  & h2 {
+    padding-right: 15px;
+  }
+}
 </style>
