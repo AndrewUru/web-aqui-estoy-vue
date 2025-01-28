@@ -220,13 +220,14 @@ export default {
     & .select-cities {
       display: grid;
       justify-content: end;
-      width: 100%;
+
 
       & select {
         background-color: var(--color-celeste);
         font-family: Montserrat, sans-serif;
         border-radius: 5px;
-        width: 200px;
+        width: 400px;
+        height: 30px;
         text-align: center;
       }
     }
