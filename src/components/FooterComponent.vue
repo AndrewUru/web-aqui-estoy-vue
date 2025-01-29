@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+
+</script>
+
 <template>
   <footer class="site-footer">
     <div class="footer-container">
@@ -15,7 +20,10 @@
       <div class="footer-col">
         <h3>Sobre nosotros</h3>
         <ul class="footer-links">
-          <li><a href="/about">Quiénes somos</a></li>
+
+          <li>
+            <RouterLink to="/about">Quiénes somos</RouterLink>
+          </li>
           <li><a href="/values">Nuestros valores</a></li>
           <li><a href="/success-stories">Historias de éxito</a></li>
         </ul>
