@@ -9,7 +9,8 @@ export default {
     return {
       formData: {
         name: '',
-        comment: ''
+        comment: '',
+        timestamp: null
       },
       alert: {
         title: '',
@@ -29,6 +30,7 @@ export default {
       return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     },
     async onSubmitComment() {
+      this.formData.timestamp = new Date().toISOString();
       const commentsCollection = collection(doc(db, 'posts', this.postId), 'comments');
 
       const result = await addDoc(commentsCollection, this.formData);
@@ -70,6 +72,7 @@ export default {
     >
       <p class="comment-name">{{ comment.name }}:</p>
       <p>{{ comment.comment }}</p>
+      <p class="comment-timestamp">{{ new Date(comment.timestamp).toLocaleString() }}</p>
     </div>
 
     <div class="add-comment">
@@ -99,6 +102,11 @@ export default {
 
 .comment-name {
   font-weight: bold;
+}
+
+.comment-timestamp {
+  font-size: 12px;
+  color: #777;
 }
 
 .add-comment {
