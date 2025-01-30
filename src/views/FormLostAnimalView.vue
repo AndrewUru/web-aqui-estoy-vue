@@ -42,7 +42,7 @@
           </div>
         </label>
         <label for="formData.city">Localidad:
-          <input type="text" name="street" id="street" v-model="formData.street" required>
+          <input type="text" name="city" id="city" v-model="formData.city" required>
         </label>
         <label for="street">Calle:
           <input type="text" name="street" id="street" v-model="formData.street" required>
@@ -104,16 +104,16 @@ export default {
         content: '',
       },
       formData: {
-        name: 'Toby',
-        date: '2025-01-01',
-        time: '01:01',
+        name: '',
+        date: '',
+        time: '',
         municipality: '',
-        city: 'Las Palmas de Gran Canaria',
-        street: 'Calle falsa',
-        number: '1',
+        city: '',
+        street: '',
+        number: '',
         reward: '',
-        email: 'encontrar_a_toby@helpme.com',
-        description: 'perdido bla bla bla',
+        email: '',
+        description: '',
         URLImage: null,
         uid: ''
       },

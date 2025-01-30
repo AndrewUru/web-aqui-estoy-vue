@@ -34,9 +34,11 @@ export default {
       const result = await addDoc(commentsCollection, this.formData);
       if (result?.id) {
         this.alert = {
-          title: "Comentario publicado ok!",
-          content: "Lo que quiera poner.."
+          title: "Publicado",
+          content: "¡Gracias por tu comentario!"
         };
+        this.formData.name = '';
+        this.formData.comment = '';
       }
     },
     acceptModal() {
@@ -50,7 +52,6 @@ export default {
   }
 };
 </script>
-
 
 <template>
   <ModalComponent
@@ -78,7 +79,6 @@ export default {
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .comments-section {
@@ -130,3 +130,4 @@ export default {
   background-color: #004a99;
 }
 </style>
+

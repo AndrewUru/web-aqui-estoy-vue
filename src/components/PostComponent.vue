@@ -14,7 +14,7 @@
           <p class="contact">Contacto: {{ post.contact }}</p>
           <p>{{ post.description }}</p>
           <p v-if="isReward"><strong>Se ofrece recompensa de {{ post.reward }}</strong></p>
-          <p>Publicado por: <strong>{{ post.author }}</strong></p>
+          <p>Publicado por: <strong>{{ post.currentUser }}</strong></p>
         </div>
       </div>
       <div class="comments-section">
