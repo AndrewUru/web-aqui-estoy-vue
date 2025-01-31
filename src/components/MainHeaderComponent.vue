@@ -47,7 +47,7 @@ export default {
     <nav class="header-left">
 
       <div class="nav-links">
-        <a href="#" @click.prevent="redirectToHome">¡AQUÍ ESTOY!</a>
+        <!--<a href="#" @click.prevent="redirectToHome">¡AQUÍ ESTOY!</a>-->
         <RouterLink to="/lost-animals">En búsqueda</RouterLink>
         <RouterLink to="/found-animals">Encontrados</RouterLink>
         <RouterLink to="/about">Sobre nosotras ...</RouterLink>

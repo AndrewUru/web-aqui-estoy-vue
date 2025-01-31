@@ -16,10 +16,16 @@ import ContactView from '../views/footerInfo/ContactUsView.vue';
 import ValuesView from '../views/footerInfo/OurValuesView.vue';
 import SuccessStoriesView from '../views/footerInfo/SuccessStoriesView.vue';
 import ProfileView from '@/views/ProfileView.vue';
+import HomeView from '@/views/HomeView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+    },
     {
       path: '/lost-animals',
       name: 'lost-animals',

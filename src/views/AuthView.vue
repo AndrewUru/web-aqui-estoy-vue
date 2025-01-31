@@ -37,7 +37,8 @@ export default {
     async login(login) {
       try {
         await signInWithEmailAndPassword(auth, login.email, login.password)
-        window.location.href = 'https://aqui-estoy.netlify.app/';
+        this.$router.push({ name: 'home' })
+
 
       } catch (Error) {
         console.log(Error);
@@ -60,7 +61,8 @@ export default {
             email: login.email,
           })
 
-          window.location.href = 'https://aqui-estoy.netlify.app/';
+          this.$router.push({ name: 'home' })
+
         }
 
       } catch (Error) {
