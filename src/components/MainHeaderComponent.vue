@@ -47,6 +47,7 @@ export default {
     <nav class="header-left">
 
       <div class="nav-links">
+        <RouterLink to="/" class="home">¡AQUÍ ESTOY!</RouterLink>
         <!--<a href="#" @click.prevent="redirectToHome">¡AQUÍ ESTOY!</a>-->
         <RouterLink to="/lost-animals">En búsqueda</RouterLink>
         <RouterLink to="/found-animals">Encontrados</RouterLink>
@@ -109,7 +110,7 @@ export default {
   /* Espaciado entre los elementos */
 }
 
-.header-left a {
+.home {
   color: var(--color-celeste);
   font-family: "Luckiest Guy", system-ui;
   font-size: 20px;

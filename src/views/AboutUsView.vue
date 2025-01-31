@@ -50,6 +50,28 @@
     </div>
     <div class="about-footer">
       <p>Gracias por ser parte de esta comunidad.<br> Juntos podemos hacer una gran diferencia.</p>
+      <br>
+      <div class="contact-founder">
+        <p id="tittle-contact">LinkedIn, GitHub y correo!!!</p>
+        <div class="founder-container">
+          <p class="founder-name">Fundadora Violeta</p>
+          <p>vioeasd@gmail.com</p>
+          <a href="https://www.linkedin.com/in/vio-bobis-santana/">LinkedIn</a>
+          <br>
+          <a href="https://github.com/vio-debug">Github</a>
+        </div>
+
+        <br>
+        <div class="founder-container">
+          <p class="founder-name">Fundadora Zeida</p>
+          <p>zeidaromen@outlook.es</p>
+          <a href="https://www.linkedin.com/in/zeida-de-los-reyes-rodr%C3%ADguez-mendoza/">LinkedIn</a>
+          <br>
+          <a href="https://github.com/Zeida">Github</a>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </template>
@@ -121,5 +143,35 @@ p {
   font-size: 15px;
   line-height: 1.6;
 }
-</style>
 
+
+
+#tittle-contact {
+  font-size: 20px;
+  color: var(--color-celeste);
+}
+
+.contact-founder {
+
+  & .founder-container {
+    padding-bottom: 10px;
+    margin-top: 10px;
+    background-color: var(--color-azul-oscuro);
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+
+  }
+
+  & .founder-name {
+    font-size: 18px;
+    color: rgb(99, 141, 225);
+  }
+
+  & a,
+  p {
+    font-size: 15px;
+    color: var(--color-celeste);
+  }
+}
+</style>
