@@ -33,6 +33,9 @@ export default {
       console.log("adiós, pero no se sabe cuando te vas");
       this.isLogin = false;
       this.$router.push({ name: 'home' });
+    },
+    redirectToHome() {
+      window.location.href = 'https://aqui-estoy.netlify.app/';
     }
   }
 }
@@ -44,9 +47,7 @@ export default {
     <nav class="header-left">
 
       <div class="nav-links">
-        <RouterLink to="/">
-          <p>¡AQUÍ ESTOY!</p>
-        </RouterLink>
+        <a href="#" @click.prevent="redirectToHome">¡AQUÍ ESTOY!</a>
         <RouterLink to="/lost-animals">En búsqueda</RouterLink>
         <RouterLink to="/found-animals">Encontrados</RouterLink>
         <RouterLink to="/about">Sobre nosotras ...</RouterLink>
@@ -108,7 +109,7 @@ export default {
   /* Espaciado entre los elementos */
 }
 
-.header-left p {
+.header-left a {
   color: var(--color-celeste);
   font-family: "Luckiest Guy", system-ui;
   font-size: 20px;

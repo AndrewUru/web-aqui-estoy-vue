@@ -6,23 +6,12 @@
       <input type="email" v-model="login.email" :class="{ error: hasError }" required class="input-field" />
       <label class="form-label password-label">
         Contraseña
-        <button
-    type="button"
-    class="password-toggle"
-    @click="togglePasswordVisibility"
-  >
-    <img
-      :src="isPasswordVisible ? '/icons/eye-off.svg' : '/icons/eye-tracking.svg'"
-      :alt="isPasswordVisible ? 'Hide password' : 'Show password'"
-    /></button>
+        <button type="button" class="password-toggle" @click="togglePasswordVisibility">
+          <img :src="isPasswordVisible ? '/icons/eye-off.svg' : '/icons/eye-tracking.svg'"
+            :alt="isPasswordVisible ? 'Hide password' : 'Show password'" /></button>
       </label>
-      <input
-  :type="isPasswordVisible ? 'text' : 'password'"
-  v-model="login.password"
-  :class="{ error: hasError }"
-  required
-  class="input-field"
-/>
+      <input :type="isPasswordVisible ? 'text' : 'password'" v-model="login.password" :class="{ error: hasError }"
+        required class="input-field" />
       <div class="form-links password">
         <a href="#">¿Olvidaste tu contraseña?</a>
       </div>
@@ -39,24 +28,13 @@
       <input type="email" v-model="login.email" required class="input-field" />
       <label class="form-label password-label">
         Contraseña
-        <button
-          type="button"
-          class="password-toggle"
-          @click="togglePasswordVisibility"
-        >
-    <img
-      :src="isPasswordVisible ? '/icons/eye-off.svg' : '/icons/eye-tracking.svg'"
-      :alt="isPasswordVisible ? 'Hide password' : 'Show password'"
-    />
-  </button>
+        <button type="button" class="password-toggle" @click="togglePasswordVisibility">
+          <img :src="isPasswordVisible ? '/icons/eye-off.svg' : '/icons/eye-tracking.svg'"
+            :alt="isPasswordVisible ? 'Hide password' : 'Show password'" />
+        </button>
       </label>
-      <input
-        :type="isPasswordVisible ? 'text' : 'password'"
-        v-model="login.password"
-        :class="{ error: hasError }"
-        required
-        class="input-field"
-      />
+      <input :type="isPasswordVisible ? 'text' : 'password'" v-model="login.password" :class="{ error: hasError }"
+        required class="input-field" />
       <div class="form-links login">
         <a href="login">Ya tengo cuenta</a>
       </div>
@@ -239,6 +217,7 @@ img {
   &.signin {
     justify-content: flex-start;
   }
+
   &.login {
     justify-content: flex-end;
   }
@@ -253,7 +232,6 @@ img {
 
 .form-links a:hover {
   text-decoration: underline;
-  color:white;
+  color: white;
 }
-
 </style>
